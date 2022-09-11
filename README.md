@@ -1,7 +1,12 @@
 # GDevelop Attack System
 This includes three new GDevelop extensions which work together with existing GDevelop extensions to create a complete attack system with both melee and ranged attacks. The new extensions are Attack, SwingItem, and HealthBar and they depend on the FireBullet and Health extensions.
 
-## Swing Item
+## Health Bar Extension
+This works with the "Health" extension to display health information in a health bar which can also hover over the character. To use it and the HealthBar behavior:
+1. Attach the health bar to the character.
+2. Update the health bar every frame.
+
+## Swing Item Extension
 This allows an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).
 
 1. HandheldItem allows you to have the item be held by another object at a named point.
@@ -9,7 +14,7 @@ This allows an object to be held and swung like a sword. There are two behaviors
     - For the item, move the "Center" point to wherever the object should be held (like the hilt of a sword).
 2. SwingingItem actually swings the item. You can configure the starting angle, swing speed and swing arc length. The parameters can also be inverted to swing in the opposite direction.
 
-## Attack Extension
+## Attack Extension Extension
 This is meant to be used along with the FireBullet, Health, and SwingItem behaviors. There will typically be three or four objects: the Attacker, the Weapon, the Bullet, and the Target. To set them up:
 1. Add the Health behavior to both the Attacker and the Target.
 2. Add the Attack behavior to the Attacker.
