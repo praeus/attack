@@ -28,4 +28,4 @@ The attack damage, interval, range, direction, and speed can be configured in th
 ## Attack Demo Game
 The game is a demonstration of the Attack extension along with the SwingItem and HealthBar extensions combined with the FireBullet and Health extensions. These and other extensions are used to create a game where two characters - a wizard and a knight - can fight each other to the "death" with fire and sword!
 
-You can control the wizard with Up, Down, Left, Right, "f" to fire, and + and - to zoom. Keep moving to stay away from the knight - but you have to stop to fire!
+You can control the wizard with Up, Down, Left, Right, "f" to fire, and "z" and "x" to zoom in and out. Keep moving to stay away from the knight - but you have to stop to fire!
