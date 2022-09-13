@@ -1,3 +1,5 @@
+Play the demo game at https://liluo.io/praeus/attack-extension-demo.
+
 # GDevelop Attack System and Demo Game
 This includes three GDevelop extensions which work together with existing GDevelop extensions to create a complete attack system with both melee and ranged attacks. The new extensions are Attack, SwingItem, and HealthBar and they depend on the FireBullet and Health extensions.
 
