@@ -4733,7 +4733,7 @@
         },
         {
           "name": "HandheldItem",
-          "type": "SwingItem::HandheldItem"
+          "type": "Attack::HandheldItem"
         },
         {
           "name": "Health",
@@ -23188,7 +23188,7 @@
     {
       "author": "",
       "category": "General",
-      "description": "# Attack System\n\nThis includes several behaviors which work with the the FireBullet and Health extensions to create a complete attack system. \n\n## Attack Extension Setup\nThere will typically be three or four objects: the Attacker, the Weapon, the Bullet, and the Target. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingItem behavior to the Weapon, depending on which you want to attack with.\n4. Use the appropriate \"Check X damage\" action for the bullet or the swinging item on each frame.\n4. Add the Armor behavior to the Target. Use this to configure how much damage reduction the character has.\n5. Use the \"Attack by...\" actions to attack, either by swinging or by firing (or both).\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.\n\n## Swinging Behaviors\n\nThis also includes behaviors which allow an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n1. HandheldItem: An object with this behavior can be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item being held, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem: An object in this behavior can be swung like a sword.\n    - You can configure the starting angle, swing speed and swing arc length.\n    - The swing can also be inverted to go in the opposite direction.\n\n# Health Bar\n\nAs a bonus, this extension includes a behavior for a health bar which can hover above a character and change in response to the character's health.\n\nThis works with the \"Health\" extension to display health information in a health bar which can also hover over the character. \n\nTo use it:\n1. Add the HealthBar behavior to the object.\n2. Attach the health bar to the object using the \"Attach health bar\" action.\n3. Update the health bar every frame using the \"Update health bar\" action.",
+      "description": "# Attack System\n\nThis includes several behaviors which work with the the FireBullet and Health extensions to create a complete attack system. \n\n## Attack Extension Setup\nThere will typically be three or four objects: the Attacker, the Weapon, the Bullet, and the Target. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingingItem behavior to the Weapon, depending on which you want to attack with.\n4. Use the appropriate \"Check X damage\" action for the bullet or the swinging item on each frame.\n4. Add the Armor behavior to the Target. Use this to configure how much damage reduction the character has.\n5. Use the \"Attack by...\" actions to attack, either by swinging or by firing (or both).\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.\n\n## Swinging Behaviors\n\nThis also includes behaviors which allow an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n1. HandheldItem: An object with this behavior can be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item being held, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem: An object in this behavior can be swung like a sword.\n    - You can configure the starting angle, swing speed and swing arc length.\n    - The swing can also be inverted to go in the opposite direction.\n\n# Health Bar\n\nAs a bonus, this extension includes a behavior for a health bar which can hover above a character and change in response to the character's health.\n\nThis works with the \"Health\" extension to display health information in a health bar which can also hover over the character. \n\nTo use it:\n1. Add the HealthBar behavior to the object.\n2. Attach the health bar to the object using the \"Attach health bar\" action.\n3. Update the health bar every frame using the \"Update health bar\" action.",
       "extensionNamespace": "",
       "fullName": "Attack a target",
       "helpPath": "https://github.com/praeus/attack/blob/main/README.md",
@@ -26430,7 +26430,7 @@
                   "longDescription": "",
                   "name": "Behavior",
                   "optional": false,
-                  "supplementaryInformation": "SwingItem::HandheldItem",
+                  "supplementaryInformation": "Attack::HandheldItem",
                   "type": "behavior"
                 },
                 {
@@ -26496,7 +26496,7 @@
                   "longDescription": "",
                   "name": "Behavior",
                   "optional": false,
-                  "supplementaryInformation": "SwingItem::HandheldItem",
+                  "supplementaryInformation": "Attack::HandheldItem",
                   "type": "behavior"
                 }
               ],
@@ -26542,7 +26542,7 @@
                   "longDescription": "",
                   "name": "Behavior",
                   "optional": false,
-                  "supplementaryInformation": "SwingItem::HandheldItem",
+                  "supplementaryInformation": "Attack::HandheldItem",
                   "type": "behavior"
                 }
               ],
@@ -26865,7 +26865,7 @@
                   "conditions": [
                     {
                       "type": {
-                        "value": "SwingItem::SwingingItem::PropertyIsSwinging"
+                        "value": "Attack::SwingingItem::PropertyIsSwinging"
                       },
                       "parameters": [
                         "Object",
