@@ -1,7 +1,7 @@
 {
   "author": "",
   "category": "General",
-  "description": "This is meant to be used along with the FireBullet, Health, and SwingItem behaviors. There will typically be three or four objects: the Attacker, the Weapon, the Bullet, and the Target. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingItem behavior to the Weapon, depending on which you want to attack with.\n    1. If using FireBullet, then use the \"Check if X is damaging\" event on each frame.\n4. Add the Armor behavior to the Target. Use this to configure how much damage reduction the character has.\n5. Use the \"Have X attack...\" events to attack, either by swinging or by firing.\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.",
+  "description": "This is meant to be used along with the FireBullet, Health, and SwingItem behaviors. There will typically be three or four objects: the Attacker, the Weapon, the Bullet, and the Target. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingItem behavior to the Weapon, depending on which you want to attack with.\n4. Use the appropriate \"Check X damage\" action for the bullet or the swinging item on each frame.\n4. Add the Armor behavior to the Target. Use this to configure how much damage reduction the character has.\n5. Use the \"Attack by...\" actions to attack, either by swinging or by firing (or both).\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.",
   "extensionNamespace": "",
   "fullName": "Attack a target",
   "helpPath": "https://github.com/praeus/attack/blob/main/README.md",
@@ -39,7 +39,7 @@
           "group": "",
           "name": "AttackSwing",
           "private": false,
-          "sentence": "Have _PARAM0_ attack _PARAM2_ by swinging weapon _PARAM5_ (swing always when ready _PARAM7_)",
+          "sentence": "Have _PARAM0_ attack _PARAM2_ by swinging weapon _PARAM5_ (swing always, when ready _PARAM7_)",
           "events": [
             {
               "type": "BuiltinCommonInstructions::Standard",
@@ -238,7 +238,7 @@
               "codeOnly": false,
               "defaultValue": "yes",
               "description": "Swing always when ready",
-              "longDescription": "Swing the weapon always, whenever the object is ready, even when not in range. If the attack is triggered for specific events, like a key release, then this should typically be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should be set to \"No\".",
+              "longDescription": "This controls whether the object swings the weapon always, whenever it is ready, even when not in range of the target. If the attack is triggered for specific events, like a key release, then this should probably be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should probably be set to \"No\".",
               "name": "SwingAlways",
               "optional": true,
               "supplementaryInformation": "",
@@ -248,7 +248,7 @@
           "objectGroups": []
         },
         {
-          "description": "Attack a target by firing a weapon with a bullet or other projectile.",
+          "description": "Attack a target by firing a weapon using a bullet or other projectile.",
           "fullName": "Attack by firing",
           "functionType": "Action",
           "group": "",
@@ -537,7 +537,7 @@
               "codeOnly": false,
               "defaultValue": "",
               "description": "Fire always when ready",
-              "longDescription": "Fire the weapon always, whenever the object is ready, even when not in range. If the attack is triggered for specific events, like a key release, then this should typically be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should be set to \"No\".",
+              "longDescription": "This controls whether the object fires the weapon always, whenever it is ready, even when not in range of the target. If the attack is triggered for specific events, like a key release, then this should typically be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should typically be set to \"No\".",
               "name": "FireAlways",
               "optional": false,
               "supplementaryInformation": "",
@@ -547,7 +547,7 @@
               "codeOnly": false,
               "defaultValue": "",
               "description": "Automatically aim the weapon",
-              "longDescription": "Automatically aim the weapon to fire at the target when in range. When this is set to \"No\", the attacker will fire in the attack direction. When set to \"Yes\", the attacker will fire directly at the target, but only when they are in range.",
+              "longDescription": "This controls whether the object automatically aims the weapon to fire at the target when it is in range. When this is set to \"No\", the attacker will fire in the attack direction. When set to \"Yes\", the attacker will fire directly at the target, but only when they are in range.",
               "name": "AutoAim",
               "optional": false,
               "supplementaryInformation": "",
@@ -916,7 +916,7 @@
               "codeOnly": false,
               "defaultValue": "",
               "description": "Fire always when ready",
-              "longDescription": "Fire the weapon always, whenever the object is ready, even when not in range. If the attack is triggered for specific events, like a key release, then this should typically be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should be set to \"No\".",
+              "longDescription": "This controls whether the object fires the weapon always, whenever it is ready, even when not in range of the target. If the attack is triggered for specific events, like a key release, then this should typically be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should typically be set to \"No\".",
               "name": "FireAlways",
               "optional": false,
               "supplementaryInformation": "",
@@ -926,7 +926,7 @@
               "codeOnly": false,
               "defaultValue": "",
               "description": "Automatically aim the weapon",
-              "longDescription": "Automatically aim the weapon to fire at the target when in range. When this is set to \"No\", the attacker will fire in the attack direction. When set to \"Yes\", the attacker will fire directly at the target, but only when they are in range.",
+              "longDescription": "This controls whether the object automatically aims the weapon to fire at the target when it is in range. When this is set to \"No\", the attacker will fire in the attack direction. When set to \"Yes\", the attacker will fire directly at the target, but only when they are in range.",
               "name": "AutoAim",
               "optional": false,
               "supplementaryInformation": "",
@@ -1485,7 +1485,7 @@
           "objectGroups": []
         },
         {
-          "description": "Set the direction of the attack - either Left, Right, Top or Bottom.",
+          "description": "Set the direction of the attack relative to the character (Left, Right, Up or Down).",
           "fullName": "Set attack direction",
           "functionType": "Action",
           "group": "Parameters",
@@ -1535,11 +1535,11 @@
             {
               "codeOnly": false,
               "defaultValue": "",
-              "description": "The direction of the attack relative to the character",
-              "longDescription": "",
+              "description": "The direction of the attack",
+              "longDescription": "The direction of the attack relative to the character, which is either Left, Right, Up, or Down",
               "name": "Direction",
               "optional": false,
-              "supplementaryInformation": "[\"Left\",\"Right\",\"Top\",\"Bottom\"]",
+              "supplementaryInformation": "[\"Left\",\"Right\",\"Up\",\"Down\"]",
               "type": "stringWithSelector"
             }
           ],
@@ -1597,7 +1597,7 @@
               "codeOnly": false,
               "defaultValue": "",
               "description": "Speed of the firing attack",
-              "longDescription": "Speed of the firing attack, in pixels per second",
+              "longDescription": "The speed of the firing attack, in pixels per second",
               "name": "Speed",
               "optional": false,
               "supplementaryInformation": "",
@@ -1765,7 +1765,7 @@
           "objectGroups": []
         },
         {
-          "description": "Check if the object is firing right now.",
+          "description": "Check if the object is firing a weapon.",
           "fullName": "Is firing",
           "functionType": "Condition",
           "group": "Conditions",
@@ -1823,7 +1823,7 @@
           "objectGroups": []
         },
         {
-          "description": "Check if the object is swinging right now.",
+          "description": "Check if the object is swinging a weapon.",
           "fullName": "Is swinging",
           "functionType": "Condition",
           "group": "Conditions",
@@ -2010,7 +2010,7 @@
           "objectGroups": []
         },
         {
-          "description": "Check if the object is in range and in the correct direction facing the character.",
+          "description": "Check that the target is in range and that the object is facing the target.",
           "fullName": "Is in range",
           "functionType": "Condition",
           "group": "Conditions",
@@ -2042,7 +2042,7 @@
                     "Object",
                     "__Attack.AngleBetween",
                     "=",
-                    "AngleBetweenPositions(Object.X(), Object.Y(), Target.X(), Target.Y())"
+                    "AngleBetweenPositions(Object.CenterX(), Object.CenterY(), Target.CenterX(), Target.CenterY())"
                   ]
                 }
               ],
@@ -2611,7 +2611,7 @@
           "objectGroups": []
         },
         {
-          "description": "Fire a weapon with a bullet in a direction (Left, Right, Top, Bottom)",
+          "description": "Fire a weapon with a bullet in a direction (Left, Right, Up, or Down)",
           "fullName": "Fire in direction",
           "functionType": "Action",
           "group": "",
@@ -2728,7 +2728,7 @@
                       "parameters": [
                         "GetArgumentAsString(\"Direction\")",
                         "=",
-                        "\"Top\""
+                        "\"Up\""
                       ]
                     }
                   ],
@@ -2760,7 +2760,7 @@
                       "parameters": [
                         "GetArgumentAsString(\"Direction\")",
                         "=",
-                        "\"Bottom\""
+                        "\"Down\""
                       ]
                     }
                   ],
@@ -2904,14 +2904,14 @@
         {
           "value": "Right",
           "type": "Choice",
-          "label": "The direction of the attack relative to the character",
+          "label": "The direction of the attack relative to the character (Left, Right, Up, or Down)",
           "description": "",
           "group": "",
           "extraInformation": [
             "Left",
             "Right",
-            "Top",
-            "Bottom"
+            "Up",
+            "Down"
           ],
           "hidden": false,
           "name": "AttackDirection"
@@ -3107,7 +3107,7 @@
             {
               "codeOnly": false,
               "defaultValue": "",
-              "description": "Damage reduction percentage",
+              "description": "Damage reduction, in percent (0-100)",
               "longDescription": "",
               "name": "DamageReduction",
               "optional": false,

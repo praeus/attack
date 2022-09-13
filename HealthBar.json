@@ -1,7 +1,7 @@
 {
   "author": "",
   "category": "General",
-  "description": "This works with the \"Health\" extension to display health information in a health bar which can also hover over the character. To use it and the HealthBar behavior:\n1. Attach the health bar to the character.\n2. Update the health bar every frame.",
+  "description": "This works with the \"Health\" extension to display health information in a health bar which can also hover over the character. \n\nTo use it:\n1. Add the HealthBar behavior to the object.\n2. Attach the health bar to the object using the \"Attach health bar\" action.\n3. Update the health bar every frame using the \"Update health bar\" action.",
   "extensionNamespace": "",
   "fullName": "Health bar",
   "helpPath": "https://github.com/praeus/attack/blob/main/README.md",

@@ -1,7 +1,7 @@
 {
   "author": "",
   "category": "General",
-  "description": "This allows an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n1. HandheldItem allows you to have the item be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem actually swings the item. You can configure the starting angle, swing speed and swing arc length. The parameters can also be inverted to swing in the opposite direction.",
+  "description": "This allows an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n## Behaviors\n1. HandheldItem: An object with this behavior can be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item being held, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem: An object in this behavior can be swung like a sword.\n    - You can configure the starting angle, swing speed and swing arc length.\n    - The swing can also be inverted to go in the opposite direction.",
   "extensionNamespace": "",
   "fullName": "Swinging item",
   "helpPath": "https://github.com/praeus/attack/blob/main/README.md",
@@ -358,8 +358,8 @@
             {
               "codeOnly": false,
               "defaultValue": "",
-              "description": "Swing speed (in degrees per-frame)",
-              "longDescription": "Can be negative to swing in the opposite direction",
+              "description": "Swing speed",
+              "longDescription": "The speed of the swing, in degrees per-frame. Can be negative to swing in the opposite direction.",
               "name": "SwingSpeed",
               "optional": false,
               "supplementaryInformation": "",
@@ -553,7 +553,7 @@
         {
           "value": "20",
           "type": "Number",
-          "label": "Starting angle",
+          "label": "Starting angle of the swing",
           "description": "",
           "group": "",
           "extraInformation": [],
