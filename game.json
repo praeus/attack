@@ -588,7 +588,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.3928000000000017,
+        "zoomFactor": 1.1422000000000014,
         "windowMask": false
       },
       "objectsGroups": [
@@ -1188,6 +1188,21 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "name": "ReturnPoint",
+          "persistentUuid": "fe8e0bdc-11a7-48bf-8a8d-962d5c488bd7",
+          "width": 0,
+          "x": 404,
+          "y": 375,
+          "zOrder": 16,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -1213,11 +1228,6 @@
           ],
           "effects": [],
           "behaviors": [
-            {
-              "name": "Armor",
-              "type": "Attack::Armor",
-              "DamageReduction": 0
-            },
             {
               "name": "Attack",
               "type": "Attack::Attack",
@@ -1845,11 +1855,6 @@
           ],
           "effects": [],
           "behaviors": [
-            {
-              "name": "Armor",
-              "type": "Attack::Armor",
-              "DamageReduction": 25
-            },
             {
               "name": "Attack",
               "type": "Attack::Attack",
@@ -2904,6 +2909,17 @@
             "g": 0,
             "r": 0
           }
+        },
+        {
+          "assetStoreId": "",
+          "name": "ReturnPoint",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "animations": []
         }
       ],
       "events": [
@@ -3341,11 +3357,10 @@
                     "Attack",
                     "WizardFemale",
                     "Health",
-                    "Armor",
                     "KnightSword",
                     "SwingingItem",
                     "no",
-                    ""
+                    "no"
                   ]
                 }
               ]
@@ -3634,64 +3649,35 @@
                     "Health",
                     ""
                   ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
                 }
               ],
-              "actions": [],
-              "events": [
+              "actions": [
                 {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "BuiltinCommonInstructions::CompareNumbers"
-                      },
-                      "parameters": [
-                        "WizardFemale.X()",
-                        "<",
-                        "KnightFemale.X()"
-                      ]
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "KnightFemale",
-                        "TargetX",
-                        "=",
-                        "WizardFemale.X() + 100"
-                      ]
-                    }
+                  "type": {
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "KnightFemale",
+                    "TargetX",
+                    "=",
+                    "ReturnPoint.X()"
                   ]
                 },
                 {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "BuiltinCommonInstructions::CompareNumbers"
-                      },
-                      "parameters": [
-                        "WizardFemale.X()",
-                        ">=",
-                        "KnightFemale.X()"
-                      ]
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "KnightFemale",
-                        "TargetX",
-                        "=",
-                        "WizardFemale.X() - 100"
-                      ]
-                    }
+                  "type": {
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "KnightFemale",
+                    "TargetY",
+                    "=",
+                    "ReturnPoint.Y()"
                   ]
                 }
               ]
@@ -4245,9 +4231,8 @@
                 "Attack",
                 "KnightFemale",
                 "Health",
-                "Armor",
                 "FireProjectile",
-                ""
+                "FireProjectile"
               ]
             },
             {
@@ -4259,9 +4244,8 @@
                 "Attack",
                 "WizardFemale",
                 "Health",
-                "Armor",
                 "KnightSword",
-                ""
+                "KnightSword"
               ]
             },
             {
@@ -4714,10 +4698,6 @@
         {
           "name": "Anchor",
           "type": "AnchorBehavior::AnchorBehavior"
-        },
-        {
-          "name": "Armor",
-          "type": "Attack::Armor"
         },
         {
           "name": "Attack",
@@ -23188,14 +23168,14 @@
     {
       "author": "",
       "category": "General",
-      "description": "# Attack System\n\nThis includes several behaviors which work with the the FireBullet and Health extensions to create a complete attack system. \n\n## Attack Extension Setup\nThere will typically be three or four objects: the Attacker, the Weapon, the Bullet, and the Target. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingingItem behavior to the Weapon, depending on which you want to attack with.\n4. Use the appropriate \"Check X damage\" action for the bullet or the swinging item on each frame.\n4. Add the Armor behavior to the Target. Use this to configure how much damage reduction the character has.\n5. Use the \"Attack by...\" actions to attack, either by swinging or by firing (or both).\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.\n\n## Swinging Behaviors\n\nThis also includes behaviors which allow an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n1. HandheldItem: An object with this behavior can be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item being held, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem: An object in this behavior can be swung like a sword.\n    - You can configure the starting angle, swing speed and swing arc length.\n    - The swing can also be inverted to go in the opposite direction.\n\n# Health Bar\n\nAs a bonus, this extension includes a behavior for a health bar which can hover above a character and change in response to the character's health.\n\nThis works with the \"Health\" extension to display health information in a health bar which can also hover over the character. \n\nTo use it:\n1. Add the HealthBar behavior to the object.\n2. Attach the health bar to the object using the \"Attach health bar\" action.\n3. Update the health bar every frame using the \"Update health bar\" action.",
+      "description": "# Attack System\n\nThis includes several behaviors which work with the the FireBullet and Health extensions to create a complete attack system. The behaviors are Attack, HandheldItem, SwingItem, and HealthBar.\n\n## Attack Extension Setup\nThere will typically be between two and four objects: the Attacker, the Target, the Weapon, and the Bullet. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingingItem behavior to the Weapon (if there is one).\n4. Use the appropriate \"Check X damage\" action for the type of attack on each frame.\n5. Use the \"Attack by...\" actions to attack, either by swinging or by firing (or both, or neither).\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.\n\n## Swinging Behaviors\n\nThis also includes behaviors which allow an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n1. HandheldItem: An object with this behavior can be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item being held, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem: An object in this behavior can be swung like a sword.\n    - You can configure the starting angle, swing speed and swing arc length.\n    - The swing can also be inverted to go in the opposite direction.\n\n# Health Bar\n\nAs a bonus, this extension includes a behavior for a health bar which can hover above a character and change in response to the character's health.\n\nThis works with the \"Health\" extension to display health information in a health bar which can also hover over the character. \n\nTo use it:\n1. Add the HealthBar behavior to the object.\n2. Attach the health bar to the object using the \"Attach health bar\" action.\n3. Update the health bar every frame using the \"Update health bar\" action.",
       "extensionNamespace": "",
       "fullName": "Attack a target",
       "helpPath": "https://github.com/praeus/attack/blob/main/README.md",
       "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXN3b3JkLWNyb3NzIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTYuMiwyLjQ0TDE4LjEsMTQuMzRMMjAuMjIsMTIuMjJMMjEuNjMsMTMuNjNMMTkuMTYsMTYuMUwyMi4zNCwxOS4yOEMyMi43MywxOS42NyAyMi43MywyMC4zIDIyLjM0LDIwLjY5TDIxLjYzLDIxLjRDMjEuMjQsMjEuNzkgMjAuNjEsMjEuNzkgMjAuMjIsMjEuNEwxNywxOC4yM0wxNC41NiwyMC43TDEzLjE1LDE5LjI5TDE1LjI3LDE3LjE3TDMuMzcsNS4yN1YyLjQ0SDYuMk0xNS44OSwxMEwyMC42Myw1LjI2VjIuNDRIMTcuOEwxMy4wNiw3LjE4TDE1Ljg5LDEwTTEwLjk0LDE1TDguMTEsMTIuMTNMNS45LDE0LjM0TDMuNzgsMTIuMjJMMi4zNywxMy42M0w0Ljg0LDE2LjFMMS42NiwxOS4yOUMxLjI3LDE5LjY4IDEuMjcsMjAuMzEgMS42NiwyMC43TDIuMzcsMjEuNDFDMi43NiwyMS44IDMuMzksMjEuOCAzLjc4LDIxLjQxTDcsMTguMjNMOS40NCwyMC43TDEwLjg1LDE5LjI5TDguNzMsMTcuMTdMMTAuOTQsMTVaIiAvPjwvc3ZnPg==",
       "name": "Attack",
       "previewIconUrl": "https://resources.gdevelop-app.com/assets/Icons/sword-cross.svg",
-      "shortDescription": "Have an object attack and do damage to another object using either a melee or a ranged weapon.",
+      "shortDescription": "Have an object attack and do damage to another object using an optional melee or a ranged weapon.",
       "version": "0.0.1",
       "tags": [
         "attack",
@@ -23286,13 +23266,13 @@
           "objectType": "",
           "eventsFunctions": [
             {
-              "description": "Attack a target and deal damage if they are in range by swinging a weapon.",
+              "description": "Attack a target and deal damage if they are in range.",
               "fullName": "Attack by swinging",
               "functionType": "Action",
               "group": "",
-              "name": "AttackSwing",
+              "name": "Attack",
               "private": false,
-              "sentence": "Have _PARAM0_ attack _PARAM2_ by swinging weapon _PARAM5_ (swing always, when ready _PARAM7_)",
+              "sentence": "Have _PARAM0_ attack _PARAM2_ (swing always, when ready _PARAM4_)",
               "events": [
                 {
                   "type": "BuiltinCommonInstructions::Standard",
@@ -23326,48 +23306,229 @@
                       "conditions": [
                         {
                           "type": {
-                            "value": "BuiltinCommonInstructions::Or"
+                            "value": "Attack::Attack::IsInRange"
                           },
-                          "parameters": [],
-                          "subInstructions": [
-                            {
-                              "type": {
-                                "value": "GetArgumentAsBoolean"
-                              },
-                              "parameters": [
-                                "\"SwingAlways\""
-                              ]
-                            },
-                            {
-                              "type": {
-                                "value": "BuiltinCommonInstructions::And"
-                              },
-                              "parameters": [],
-                              "subInstructions": [
-                                {
-                                  "type": {
-                                    "value": "Attack::Attack::IsInRange"
-                                  },
-                                  "parameters": [
-                                    "Object",
-                                    "Behavior",
-                                    "Target",
-                                    ""
-                                  ]
-                                },
-                                {
-                                  "type": {
-                                    "inverted": true,
-                                    "value": "Health::Health::IsDead"
-                                  },
-                                  "parameters": [
-                                    "Target",
-                                    "HealthBehavior",
-                                    ""
-                                  ]
-                                }
-                              ]
-                            }
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "Target",
+                            ""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "Health::Health::IsDead"
+                          },
+                          "parameters": [
+                            "Target",
+                            "HealthBehavior",
+                            ""
+                          ]
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyIsAttacking"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyHasJustAttacked"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "ResetObjectTimer"
+                          },
+                          "parameters": [
+                            "Object",
+                            "\"__Attack_AttackTimer\""
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "GetArgumentAsBoolean"
+                          },
+                          "parameters": [
+                            "\"AttackAlways\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "Attack::Attack::PropertyHasJustAttacked"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior"
+                          ]
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyIsAttacking"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyHasJustAttacked"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "ResetObjectTimer"
+                          },
+                          "parameters": [
+                            "Object",
+                            "\"__Attack_AttackTimer\""
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Target to attack",
+                  "longDescription": "",
+                  "name": "Target",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "objectList"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Health behavior",
+                  "longDescription": "",
+                  "name": "HealthBehavior",
+                  "optional": false,
+                  "supplementaryInformation": "Health::Health",
+                  "type": "behavior"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "yes",
+                  "description": "Attack always, when ready",
+                  "longDescription": "This controls whether the object attacks always, whenever it is ready, even when not in range of the target. If the attack is triggered for specific events, like a key release, then this should probably be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should probably be set to \"No\".",
+                  "name": "AttackAlways",
+                  "optional": true,
+                  "supplementaryInformation": "",
+                  "type": "yesorno"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Attack a target if they are in range by swinging a weapon.",
+              "fullName": "Attack by swinging",
+              "functionType": "Action",
+              "group": "",
+              "name": "AttackSwing",
+              "private": false,
+              "sentence": "Have _PARAM0_ attack _PARAM2_ by swinging weapon _PARAM4_ (swing always, when ready _PARAM6_)",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::IsReadyToAttack"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PickNearest"
+                      },
+                      "parameters": [
+                        "Target",
+                        "Object.CenterX()",
+                        "Object.CenterY()",
+                        ""
+                      ]
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "Health::Health::IsDead"
+                          },
+                          "parameters": [
+                            "Target",
+                            "HealthBehavior",
+                            ""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "Attack::Attack::IsInRange"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "Target",
+                            ""
                           ]
                         }
                       ],
@@ -23385,6 +23546,90 @@
                         {
                           "type": {
                             "value": "Attack::Attack::SetPropertyIsSwinging"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyIsAttacking"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyHasJustAttacked"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "ResetObjectTimer"
+                          },
+                          "parameters": [
+                            "Object",
+                            "\"__Attack_AttackTimer\""
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "GetArgumentAsBoolean"
+                          },
+                          "parameters": [
+                            "\"SwingAlways\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "Attack::Attack::PropertyHasJustAttacked"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior"
+                          ]
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "Attack::SwingingItem::SwingItem"
+                          },
+                          "parameters": [
+                            "Weapon",
+                            "SwingBehavior",
+                            ""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyIsSwinging"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "yes"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyIsAttacking"
                           },
                           "parameters": [
                             "Object",
@@ -23460,16 +23705,6 @@
                 {
                   "codeOnly": false,
                   "defaultValue": "",
-                  "description": "Armor behavior",
-                  "longDescription": "",
-                  "name": "ArmorBehavior",
-                  "optional": false,
-                  "supplementaryInformation": "Attack::Armor",
-                  "type": "behavior"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
                   "description": "Weapon to swing",
                   "longDescription": "",
                   "name": "Weapon",
@@ -23490,7 +23725,7 @@
                 {
                   "codeOnly": false,
                   "defaultValue": "yes",
-                  "description": "Swing always when ready",
+                  "description": "Swing always, when ready",
                   "longDescription": "This controls whether the object swings the weapon always, whenever it is ready, even when not in range of the target. If the attack is triggered for specific events, like a key release, then this should probably be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should probably be set to \"No\".",
                   "name": "SwingAlways",
                   "optional": true,
@@ -23605,47 +23840,17 @@
                       "actions": [
                         {
                           "type": {
-                            "value": "Attack::Attack::SetPropertyIsFiring"
+                            "value": "Attack::Attack::FireAtTarget"
                           },
                           "parameters": [
                             "Object",
                             "Behavior",
-                            "yes"
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "Attack::Attack::SetPropertyHasJustAttacked"
-                          },
-                          "parameters": [
-                            "Object",
-                            "Behavior",
-                            "yes"
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "ResetObjectTimer"
-                          },
-                          "parameters": [
-                            "Object",
-                            "\"__Attack_AttackTimer\""
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "FireBullet::FireBullet::FireTowardPosition"
-                          },
-                          "parameters": [
                             "Weapon",
                             "FireBehavior",
                             "GetArgumentAsNumber(\"PointX\")",
                             "GetArgumentAsNumber(\"PointY\")",
                             "Bullet",
-                            "Target.CenterX()",
-                            "Target.CenterY()",
-                            "Object.Behavior::PropertyAttackSpeed()",
-                            "",
+                            "Target",
                             ""
                           ]
                         }
@@ -23789,7 +23994,7 @@
                 {
                   "codeOnly": false,
                   "defaultValue": "",
-                  "description": "Fire always when ready",
+                  "description": "Fire always, when ready",
                   "longDescription": "This controls whether the object fires the weapon always, whenever it is ready, even when not in range of the target. If the attack is triggered for specific events, like a key release, then this should typically be set to \"Yes\". If the attack is run on every frame to have the character auto-attack, then this should typically be set to \"No\".",
                   "name": "FireAlways",
                   "optional": false,
@@ -23850,20 +24055,11 @@
                       "conditions": [
                         {
                           "type": {
+                            "inverted": true,
                             "value": "GetArgumentAsBoolean"
                           },
                           "parameters": [
-                            "\"FireAlways\""
-                          ]
-                        },
-                        {
-                          "type": {
-                            "inverted": true,
-                            "value": "Attack::Attack::PropertyHasJustAttacked"
-                          },
-                          "parameters": [
-                            "Object",
-                            "Behavior"
+                            "\"AutoAim\""
                           ]
                         }
                       ],
@@ -23963,47 +24159,17 @@
                         },
                         {
                           "type": {
-                            "value": "Attack::Attack::SetPropertyIsFiring"
+                            "value": "Attack::Attack::FireAtTarget"
                           },
                           "parameters": [
                             "Object",
                             "Behavior",
-                            "yes"
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "Attack::Attack::SetPropertyHasJustAttacked"
-                          },
-                          "parameters": [
-                            "Object",
-                            "Behavior",
-                            "yes"
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "ResetObjectTimer"
-                          },
-                          "parameters": [
-                            "Object",
-                            "\"__Attack_AttackTimer\""
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "FireBullet::FireBullet::FireTowardPosition"
-                          },
-                          "parameters": [
                             "Weapon",
                             "FireBehavior",
                             "GetArgumentAsNumber(\"PointX\")",
                             "GetArgumentAsNumber(\"PointY\")",
                             "Bullet",
-                            "Target.CenterX()",
-                            "Target.CenterY()",
-                            "Object.Behavior::PropertyAttackSpeed()",
-                            "",
+                            "Target",
                             ""
                           ]
                         }
@@ -24014,11 +24180,20 @@
                       "conditions": [
                         {
                           "type": {
-                            "inverted": true,
                             "value": "GetArgumentAsBoolean"
                           },
                           "parameters": [
-                            "\"AutoAim\""
+                            "\"FireAlways\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "Attack::Attack::PropertyHasJustAttacked"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior"
                           ]
                         }
                       ],
@@ -24195,7 +24370,7 @@
               "group": "",
               "name": "CheckBullet",
               "private": false,
-              "sentence": "Check if _PARAM0_ is damaging _PARAM2_ with bullet _PARAM5_",
+              "sentence": "Check if _PARAM0_ is damaging _PARAM2_ with bullet _PARAM4_",
               "events": [
                 {
                   "type": "BuiltinCommonInstructions::Standard",
@@ -24232,7 +24407,7 @@
                       "parameters": [
                         "Target",
                         "HealthBehavior",
-                        "Target.ArmorBehavior::DamageDone(Object.Behavior::PropertyAttackDamage())",
+                        "Object.Behavior::PropertyAttackDamage()",
                         ""
                       ]
                     },
@@ -24360,16 +24535,6 @@
                 {
                   "codeOnly": false,
                   "defaultValue": "",
-                  "description": "Armor behavior",
-                  "longDescription": "",
-                  "name": "ArmorBehavior",
-                  "optional": false,
-                  "supplementaryInformation": "Attack::Armor",
-                  "type": "behavior"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
                   "description": "Bullet or other projectile",
                   "longDescription": "",
                   "name": "Bullet",
@@ -24387,7 +24552,7 @@
               "group": "",
               "name": "CheckSwing",
               "private": false,
-              "sentence": "Check if _PARAM0_ is damaging _PARAM2_ by swinging _PARAM5_",
+              "sentence": "Check if _PARAM0_ is damaging _PARAM2_ by swinging _PARAM4_",
               "events": [
                 {
                   "type": "BuiltinCommonInstructions::Standard",
@@ -24443,7 +24608,7 @@
                       "parameters": [
                         "Target",
                         "HealthBehavior",
-                        "Target.ArmorBehavior::DamageDone(Object.Behavior::PropertyAttackDamage())",
+                        "Object.Behavior::PropertyAttackDamage()",
                         ""
                       ]
                     },
@@ -24534,22 +24699,185 @@
                 {
                   "codeOnly": false,
                   "defaultValue": "",
-                  "description": "Armor behavior",
-                  "longDescription": "",
-                  "name": "ArmorBehavior",
-                  "optional": false,
-                  "supplementaryInformation": "Attack::Armor",
-                  "type": "behavior"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
                   "description": "Swinging weapon",
                   "longDescription": "",
                   "name": "Weapon",
                   "optional": false,
                   "supplementaryInformation": "",
                   "type": "objectList"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Check if the attack is damaging the character.",
+              "fullName": "Check swing damage",
+              "functionType": "Action",
+              "group": "",
+              "name": "CheckAttack",
+              "private": false,
+              "sentence": "Check if _PARAM0_ is damaging _PARAM2_ by attacking",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::IsInRange"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "Target",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "Health::Health::IsDead"
+                      },
+                      "parameters": [
+                        "Target",
+                        "HealthBehavior",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Attack::Attack::PropertyIsAttacking"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "Attack::Attack::PropertyIsSwinging"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "Attack::Attack::PropertyIsFiring"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "Attack::Attack::PropertyHasDamagedTarget"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Health::Health::Hit"
+                      },
+                      "parameters": [
+                        "Target",
+                        "HealthBehavior",
+                        "Object.Behavior::PropertyAttackDamage()",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Attack::Attack::SetPropertyHasDamagedTarget"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "yes"
+                      ]
+                    }
+                  ],
+                  "events": [
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "Health::Health::IsDead"
+                          },
+                          "parameters": [
+                            "Target",
+                            "HealthBehavior",
+                            ""
+                          ]
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "Attack::Attack::SetPropertyKillCount"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "+",
+                            "1"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Target of the attack",
+                  "longDescription": "",
+                  "name": "Target",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "objectList"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Health behavior",
+                  "longDescription": "",
+                  "name": "HealthBehavior",
+                  "optional": false,
+                  "supplementaryInformation": "Health::Health",
+                  "type": "behavior"
                 }
               ],
               "objectGroups": []
@@ -24616,6 +24944,54 @@
               "objectGroups": []
             },
             {
+              "description": "Get the attack interval, in seconds.",
+              "fullName": "Attack interval",
+              "functionType": "Expression",
+              "group": "",
+              "name": "AttackInterval",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnNumber"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertyAttackInterval()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
               "description": "Set the damage done by the attack.",
               "fullName": "Set attack damage",
               "functionType": "Action",
@@ -24672,6 +25048,54 @@
                   "optional": false,
                   "supplementaryInformation": "",
                   "type": "expression"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Get the damage done by the attack.",
+              "fullName": "Attack damage",
+              "functionType": "Expression",
+              "group": "",
+              "name": "AttackDamage",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnNumber"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertyAttackDamage()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
                 }
               ],
               "objectGroups": []
@@ -24738,6 +25162,54 @@
               "objectGroups": []
             },
             {
+              "description": "Get the range of the attack, in pixels.",
+              "fullName": "Attack range",
+              "functionType": "Expression",
+              "group": "",
+              "name": "AttackRange",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnNumber"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertyAttackRange()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
               "description": "Set the direction of the attack relative to the character (Left, Right, Up or Down).",
               "fullName": "Set attack direction",
               "functionType": "Action",
@@ -24799,7 +25271,55 @@
               "objectGroups": []
             },
             {
-              "description": "Set the speed of the firing attack in pixels per second.",
+              "description": "Get the direction of the attack relative to the character (Left, Right, Up or Down).",
+              "fullName": "Attack direction",
+              "functionType": "StringExpression",
+              "group": "",
+              "name": "AttackDirection",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnString"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertyAttackDirection()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Set the speed of the firing attack, in pixels per second.",
               "fullName": "Set attack speed",
               "functionType": "Action",
               "group": "Parameters",
@@ -24855,6 +25375,54 @@
                   "optional": false,
                   "supplementaryInformation": "",
                   "type": "expression"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Get the speed of the firing attack, in pixels per second.",
+              "fullName": "Attack range",
+              "functionType": "Expression",
+              "group": "",
+              "name": "AttackSpeed",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnNumber"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertyAttackSpeed()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
                 }
               ],
               "objectGroups": []
@@ -25134,6 +25702,64 @@
               "objectGroups": []
             },
             {
+              "description": "Check if the object is attacking.",
+              "fullName": "Is attacking",
+              "functionType": "Condition",
+              "group": "Conditions",
+              "name": "IsAttacking",
+              "private": false,
+              "sentence": "_PARAM0_ is attacking",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::PropertyIsAttacking"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnBoolean"
+                      },
+                      "parameters": [
+                        "True"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
               "description": "Check if the object has just attacked.",
               "fullName": "Has just attacked",
               "functionType": "Condition",
@@ -25194,6 +25820,64 @@
               "objectGroups": []
             },
             {
+              "description": "Check if the object has damaged the target.",
+              "fullName": "Has  damaged",
+              "functionType": "Condition",
+              "group": "",
+              "name": "HasDamagedTarget",
+              "private": false,
+              "sentence": "_PARAM0_ has damaged the target",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::PropertyHasDamagedTarget"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnBoolean"
+                      },
+                      "parameters": [
+                        "True"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
               "description": "Check if the object is ready to attack.",
               "fullName": "Is ready to attack",
               "functionType": "Condition",
@@ -25208,17 +25892,7 @@
                     {
                       "type": {
                         "inverted": true,
-                        "value": "Attack::Attack::PropertyIsSwinging"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Behavior"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "inverted": true,
-                        "value": "Attack::Attack::PropertyIsFiring"
+                        "value": "Attack::Attack::PropertyIsAttacking"
                       },
                       "parameters": [
                         "Object",
@@ -25684,6 +26358,16 @@
                     },
                     {
                       "type": {
+                        "value": "Attack::Attack::SetPropertyIsAttacking"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
                         "value": "Attack::Attack::SetPropertyHasDamagedTarget"
                       },
                       "parameters": [
@@ -25864,7 +26548,7 @@
               "objectGroups": []
             },
             {
-              "description": "Fire a weapon with a bullet in a direction (Left, Right, Up, or Down)",
+              "description": "Fire a weapon with a bullet in a direction (Left, Right, Up, or Down).",
               "fullName": "Fire in direction",
               "functionType": "Action",
               "group": "",
@@ -25889,6 +26573,16 @@
                     {
                       "type": {
                         "value": "Attack::Attack::SetPropertyHasJustAttacked"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "yes"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Attack::Attack::SetPropertyIsAttacking"
                       },
                       "parameters": [
                         "Object",
@@ -26121,6 +26815,162 @@
                 }
               ],
               "objectGroups": []
+            },
+            {
+              "description": "Fire a weapon with a bullet at a target.",
+              "fullName": "Fire at target",
+              "functionType": "Action",
+              "group": "",
+              "name": "FireAtTarget",
+              "private": true,
+              "sentence": "Have _PARAM0_ fire _PARAM2_ from _PARAM4_;_PARAM5_ with bullet _PARAM6_ at target _PARAM7_",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::SetPropertyIsFiring"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "yes"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Attack::Attack::SetPropertyIsAttacking"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "yes"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "Attack::Attack::SetPropertyHasJustAttacked"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "yes"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "ResetObjectTimer"
+                      },
+                      "parameters": [
+                        "Object",
+                        "\"__Attack_AttackTimer\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "FireBullet::FireBullet::FireTowardPosition"
+                      },
+                      "parameters": [
+                        "Weapon",
+                        "FireBehavior",
+                        "GetArgumentAsNumber(\"PointX\")",
+                        "GetArgumentAsNumber(\"PointY\")",
+                        "Bullet",
+                        "Target.CenterX()",
+                        "Target.CenterY()",
+                        "Object.Behavior::PropertyAttackSpeed()",
+                        "",
+                        ""
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Weapon to fire",
+                  "longDescription": "",
+                  "name": "Weapon",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "objectList"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Fire bullet behavior",
+                  "longDescription": "",
+                  "name": "FireBehavior",
+                  "optional": false,
+                  "supplementaryInformation": "FireBullet::FireBullet",
+                  "type": "behavior"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "X point to fire from",
+                  "longDescription": "",
+                  "name": "PointX",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "expression"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Y point to fire from",
+                  "longDescription": "",
+                  "name": "PointY",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "expression"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Bullet or projectile to fire",
+                  "longDescription": "",
+                  "name": "Bullet",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "objectList"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Target to fire at",
+                  "longDescription": "",
+                  "name": "Target",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "objectList"
+                }
+              ],
+              "objectGroups": []
             }
           ],
           "propertyDescriptors": [
@@ -26212,6 +27062,16 @@
               "name": "IsFiring"
             },
             {
+              "value": "",
+              "type": "Boolean",
+              "label": "",
+              "description": "",
+              "group": "",
+              "extraInformation": [],
+              "hidden": true,
+              "name": "IsAttacking"
+            },
+            {
               "value": "0",
               "type": "Number",
               "label": "",
@@ -26260,127 +27120,6 @@
               "extraInformation": [],
               "hidden": true,
               "name": "HasDamagedTarget"
-            }
-          ]
-        },
-        {
-          "description": "Allows the target to reduce the damage done to it by an attack.",
-          "fullName": "Armor (damage reduction)",
-          "name": "Armor",
-          "objectType": "",
-          "eventsFunctions": [
-            {
-              "description": "Get the damage done after it is reduced by the armor.",
-              "fullName": "Damage done",
-              "functionType": "Expression",
-              "group": "",
-              "name": "DamageDone",
-              "private": false,
-              "sentence": "",
-              "events": [
-                {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "SetReturnNumber"
-                      },
-                      "parameters": [
-                        "((100 - Object.Behavior::PropertyDamageReduction()) / 100) * GetArgumentAsNumber(\"InitialDamage\")"
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "parameters": [
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Object",
-                  "longDescription": "",
-                  "name": "Object",
-                  "optional": false,
-                  "supplementaryInformation": "",
-                  "type": "object"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Behavior",
-                  "longDescription": "",
-                  "name": "Behavior",
-                  "optional": false,
-                  "supplementaryInformation": "Attack::Armor",
-                  "type": "behavior"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Initial damage done",
-                  "longDescription": "",
-                  "name": "InitialDamage",
-                  "optional": false,
-                  "supplementaryInformation": "",
-                  "type": "expression"
-                }
-              ],
-              "objectGroups": []
-            },
-            {
-              "description": "Set the damage reduction, in percent (0-100).",
-              "fullName": "Set damage reduction",
-              "functionType": "Action",
-              "group": "",
-              "name": "SetDamageReduction",
-              "private": false,
-              "sentence": "Set the damage reduction for _PARAM0_ to _PARAM2_ percent",
-              "events": [],
-              "parameters": [
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Object",
-                  "longDescription": "",
-                  "name": "Object",
-                  "optional": false,
-                  "supplementaryInformation": "",
-                  "type": "object"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Behavior",
-                  "longDescription": "",
-                  "name": "Behavior",
-                  "optional": false,
-                  "supplementaryInformation": "Attack::Armor",
-                  "type": "behavior"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Damage reduction, in percent (0-100)",
-                  "longDescription": "",
-                  "name": "DamageReduction",
-                  "optional": false,
-                  "supplementaryInformation": "",
-                  "type": "expression"
-                }
-              ],
-              "objectGroups": []
-            }
-          ],
-          "propertyDescriptors": [
-            {
-              "value": "0",
-              "type": "Number",
-              "label": "Damage reduction, in percent (0-100)",
-              "description": "",
-              "group": "",
-              "extraInformation": [],
-              "hidden": false,
-              "name": "DamageReduction"
             }
           ]
         },
@@ -26669,6 +27408,163 @@
               "objectGroups": []
             },
             {
+              "description": "Get the starting angle for the swing.",
+              "fullName": "Starting angle",
+              "functionType": "Expression",
+              "group": "",
+              "name": "StartingAngle",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnNumber"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertyStartingAngle()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::SwingingItem",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Set the total degrees in the swing's arc.",
+              "fullName": "Set swing arc",
+              "functionType": "Action",
+              "group": "",
+              "name": "SetSwingArc",
+              "private": false,
+              "sentence": "Set _PARAM0_ swing arc to _PARAM2_",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Attack::SwingingItem::SetPropertySwingArc"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "GetArgumentAsNumber(\"SwingArc\")"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::SwingingItem",
+                  "type": "behavior"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Total degrees in the swing's arc",
+                  "longDescription": "",
+                  "name": "SwingArc",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "string"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Get the total degrees in the swing's arc.",
+              "fullName": "Swing arc",
+              "functionType": "Expression",
+              "group": "",
+              "name": "SwingArc",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnNumber"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertySwingArc()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::SwingingItem",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
               "description": "Set the swing speed, in degrees per frame.",
               "fullName": "Set swing speed",
               "functionType": "Action",
@@ -26725,6 +27621,54 @@
                   "optional": false,
                   "supplementaryInformation": "",
                   "type": "string"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Get the swing speed, in degrees per frame.",
+              "fullName": "Swing speed",
+              "functionType": "Expression",
+              "group": "",
+              "name": "SwingSpeed",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnNumber"
+                      },
+                      "parameters": [
+                        "Object.Behavior::PropertySwingSpeed()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::SwingingItem",
+                  "type": "behavior"
                 }
               ],
               "objectGroups": []
@@ -26877,7 +27821,7 @@
                   "events": [
                     {
                       "type": "BuiltinCommonInstructions::JsCode",
-                      "inlineCode": "const object = objects[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\n\nif (!behavior.isSwingStarted) {\n    behavior.isSwingStarted = true;\n    object.setAngle(behavior._getStartingAngle());\n    behavior.swingArc = 0;\n}\nelse if (behavior.swingArc < behavior._getSwingArc()) {\n    object.setAngle(object.getAngle() + behavior._getSwingSpeed());\n    behavior.swingArc += Math.abs(behavior._getSwingSpeed())\n}\nelse if (behavior.swingArc > 0) {\n    object.setAngle(object.getAngle() - behavior._getSwingSpeed());\n    behavior.swingArc -= Math.abs(behavior._getSwingSpeed);\n}\nelse {\n    object.setAngle(behavior._getStartingAngle());\n    behavior.isSwingStarted = false;\n    behavior._setIsSwinging(false);\n}",
+                      "inlineCode": "const object = objects[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\n\nif (!behavior.isSwingStarted) {\n    behavior.isSwingStarted = true;\n    behavior.isSwingFinished = false;\n    object.setAngle(behavior._getStartingAngle());\n    behavior.swingArc = 0;\n}\nelse if (behavior.swingArc < behavior._getSwingArc() && !behavior.isSwingFinished) {\n    object.setAngle(object.getAngle() + behavior._getSwingSpeed());\n    behavior.swingArc += Math.abs(behavior._getSwingSpeed());\n}\nelse if (behavior.swingArc >= behavior._getSwingArc() && !behavior.isSwingFinished) {\n    behavior.isSwingFinished = true;\n} \nelse if (behavior.isSwingFinished && behavior.swingArc > 0) {\n    object.setAngle(object.getAngle() - behavior._getSwingSpeed());\n    behavior.swingArc -= Math.abs(behavior._getSwingSpeed);\n}\nelse {\n    object.setAngle(behavior._getStartingAngle());\n    behavior.isSwingStarted = false;\n    behavior.isSwingFinished = false;\n    behavior._setIsSwinging(false);\n}",
                       "parameterObjects": "Object",
                       "useStrict": true,
                       "eventsSheetExpanded": false
@@ -26934,7 +27878,7 @@
             {
               "value": "10",
               "type": "Number",
-              "label": "Swing speed, in degrees per frame",
+              "label": "Swing speed, in degrees per frame. Can be negative to swing in the opposite direction.",
               "description": "",
               "group": "",
               "extraInformation": [],
