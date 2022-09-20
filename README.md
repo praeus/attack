@@ -26,7 +26,7 @@ This also includes behaviors which allow an object to be held and swung like a s
     - For the item being held, move the "Center" point to wherever the object should be held (like the hilt of a sword).
 2. SwingingItem: An object in this behavior can be swung like a sword.
     - You can configure the starting angle, swing speed and swing arc length.
-    - The swing can also be inverted to go in the opposite direction.
+    - The swing can follow the rotation of the object holding the item.
 
 # Health Bar
 
