@@ -557,6 +557,19 @@
         "name": "Screenshot 2022-09-12 8.33.15 PM (1).png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "assets/Red Magic Staff.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Red Magic Staff.png",
+        "smoothed": false,
+        "userAdded": false,
+        "origin": {
+          "identifier": "https://resources.gdevelop-app.com/assets/16x16 Dungeon Tileset/Weapons/Red Magic Staff.png",
+          "name": "gdevelop-asset-store"
+        }
       }
     ],
     "resourceFolders": []
@@ -570,9 +583,6 @@
       "disableInputWhenNotFocused": true,
       "mangledName": "Demo_32Dungeon",
       "name": "Demo Dungeon",
-      "oglFOV": 90,
-      "oglZFar": 500,
-      "oglZNear": 1,
       "r": 255,
       "standardSortMethod": true,
       "stopSoundsOnStartup": true,
@@ -600,6 +610,17 @@
             },
             {
               "name": "WizardFemale"
+            }
+          ]
+        },
+        {
+          "name": "Weapons",
+          "objects": [
+            {
+              "name": "KnightSword"
+            },
+            {
+              "name": "RedMagicStaff"
             }
           ]
         }
@@ -1215,12 +1236,6 @@
           "variables": [
             {
               "folded": true,
-              "name": "IsFacingLeft",
-              "type": "boolean",
-              "value": false
-            },
-            {
-              "folded": true,
               "name": "IsRevived",
               "type": "boolean",
               "value": false
@@ -1231,7 +1246,7 @@
             {
               "name": "Attack",
               "type": "Attack::Attack",
-              "AttackDamage": 20,
+              "AttackDamage": 15,
               "AttackInterval": 2,
               "AttackRange": 200,
               "AttackDirection": "Right",
@@ -1242,7 +1257,8 @@
               "KillCount": 0,
               "DeathCount": 0,
               "HasDied": false,
-              "HasJustAttacked": false
+              "HasJustAttacked": false,
+              "RotateDirection": true
             },
             {
               "name": "FireBullet",
@@ -1357,7 +1373,7 @@
                       "image": "Wizard Female_Idle_1.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 12.300000190734863,
                           "y": 23.549999237060547
                         }
@@ -1399,7 +1415,7 @@
                       "image": "Wizard Female_Idle_2.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 12.5,
                           "y": 24.549999237060547
                         }
@@ -1441,7 +1457,7 @@
                       "image": "Wizard Female_Idle_3.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 13.100000381469727,
                           "y": 24.649999618530273
                         }
@@ -1483,7 +1499,7 @@
                       "image": "Wizard Female_Idle_4.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 12.600000381469727,
                           "y": 25.350000381469727
                         }
@@ -1537,7 +1553,7 @@
                       "image": "Wizard Female_Run_1.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 13.100000381469727,
                           "y": 25.649999618530273
                         }
@@ -1579,7 +1595,7 @@
                       "image": "Wizard Female_Run_2.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 11.800000190734863,
                           "y": 23.049999237060547
                         }
@@ -1621,7 +1637,7 @@
                       "image": "Wizard Female_Run_3.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 12.699999809265137,
                           "y": 23.950000762939453
                         }
@@ -1663,7 +1679,7 @@
                       "image": "Wizard Female_Run_4.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 13.100000381469727,
                           "y": 25.649999618530273
                         }
@@ -1717,7 +1733,7 @@
                       "image": "Wizard Female_Hit.png",
                       "points": [
                         {
-                          "name": "FirePoint",
+                          "name": "Hand",
                           "x": 12.5,
                           "y": 20.049999237060547
                         }
@@ -1786,7 +1802,8 @@
               "StartingAngle": 20,
               "SwingArc": 80,
               "SwingSpeed": 10,
-              "IsSwinging": false
+              "IsSwinging": false,
+              "HandheldBehavior": "HandheldItem"
             }
           ],
           "animations": [
@@ -1830,12 +1847,6 @@
           "variables": [
             {
               "folded": true,
-              "name": "IsFacingLeft",
-              "type": "boolean",
-              "value": true
-            },
-            {
-              "folded": true,
               "name": "IsRevived",
               "type": "boolean",
               "value": false
@@ -1858,7 +1869,7 @@
             {
               "name": "Attack",
               "type": "Attack::Attack",
-              "AttackDamage": 20,
+              "AttackDamage": 30,
               "AttackInterval": 2,
               "AttackRange": 30,
               "AttackDirection": "Left",
@@ -1869,7 +1880,8 @@
               "KillCount": 0,
               "DeathCount": 0,
               "HasDied": false,
-              "HasJustAttacked": false
+              "HasJustAttacked": false,
+              "RotateDirection": false
             },
             {
               "name": "Flash",
@@ -1890,8 +1902,8 @@
             {
               "name": "Pathfinding",
               "type": "PathfindingBehavior::PathfindingBehavior",
+              "maxSpeed": 160,
               "acceleration": 120,
-              "maxSpeed": 120,
               "angleOffset": 0,
               "angularMaxSpeed": 180,
               "cellHeight": 20,
@@ -2920,6 +2932,86 @@
           "effects": [],
           "behaviors": [],
           "animations": []
+        },
+        {
+          "assetStoreId": "381c954b7c2d57803998a42d5660b791c5124beab516b52dd2c2970a63979043",
+          "name": "RedMagicStaff",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [
+            {
+              "name": "FireBullet",
+              "type": "FireBullet::FireBullet",
+              "FireCooldown": 0.1,
+              "HasJustFired": false,
+              "FiringArc": 0,
+              "AngleVariance": 0,
+              "BulletQuantity": 1,
+              "RotateBullet": true,
+              "CurrentBulletAngle": 0
+            },
+            {
+              "name": "Flash",
+              "type": "Flash::Flash",
+              "HalfPeriodTime": 0.1,
+              "IsFlashing": false,
+              "FlashDuration": 0
+            },
+            {
+              "name": "HandheldItem",
+              "type": "Attack::HandheldItem",
+              "FollowRotation": true
+            },
+            {
+              "name": "SwingingItem",
+              "type": "Attack::SwingingItem",
+              "StartingAngle": 20,
+              "SwingArc": 80,
+              "SwingSpeed": 10,
+              "HandheldBehavior": "HandheldItem",
+              "IsSwinging": false
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": true,
+                  "timeBetweenFrames": 0.02500000037252903,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "Red Magic Staff.png",
+                      "points": [
+                        {
+                          "name": "FirePoint",
+                          "x": 3.7533116340637207,
+                          "y": 3.604588031768799
+                        }
+                      ],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": false,
+                        "name": "centre",
+                        "x": 4.003793239593506,
+                        "y": 19.38493537902832
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ],
       "events": [
@@ -2960,16 +3052,6 @@
             },
             {
               "type": {
-                "value": "Attack::SwingingItem::InvertSwing"
-              },
-              "parameters": [
-                "KnightSword",
-                "SwingingItem",
-                ""
-              ]
-            },
-            {
-              "type": {
                 "value": "Attack::HandheldItem::PickUp"
               },
               "parameters": [
@@ -2978,15 +3060,6 @@
                 "KnightFemale",
                 "\"Hand\"",
                 ""
-              ]
-            },
-            {
-              "type": {
-                "value": "FlipX"
-              },
-              "parameters": [
-                "KnightFemale",
-                "yes"
               ]
             },
             {
@@ -3104,8 +3177,8 @@
                     "Health",
                     "WizardFemale",
                     "FireBullet",
-                    "WizardFemale.PointX(\"FirePoint\")",
-                    "WizardFemale.PointY(\"FirePoint\")",
+                    "WizardFemale.PointX(\"Hand\")",
+                    "WizardFemale.PointY(\"Hand\")",
                     "FireProjectile",
                     "yes",
                     "no",
@@ -3129,25 +3202,12 @@
                 },
                 {
                   "type": {
-                    "value": "ObjectVariableAsBoolean"
+                    "value": "BuiltinCommonInstructions::Once"
                   },
-                  "parameters": [
-                    "WizardFemale",
-                    "IsFacingLeft",
-                    ""
-                  ]
+                  "parameters": []
                 }
               ],
               "actions": [
-                {
-                  "type": {
-                    "value": "FlipX"
-                  },
-                  "parameters": [
-                    "WizardFemale",
-                    "yes"
-                  ]
-                },
                 {
                   "type": {
                     "value": "Attack::Attack::SetAttackDirection"
@@ -3157,16 +3217,6 @@
                     "Attack",
                     "\"Left\"",
                     ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "SetObjectVariableAsBoolean"
-                  },
-                  "parameters": [
-                    "WizardFemale",
-                    "IsFacingLeft",
-                    "True"
                   ]
                 }
               ]
@@ -3186,25 +3236,12 @@
                 },
                 {
                   "type": {
-                    "value": "ObjectVariableAsBoolean"
+                    "value": "BuiltinCommonInstructions::Once"
                   },
-                  "parameters": [
-                    "WizardFemale",
-                    "IsFacingLeft",
-                    "True"
-                  ]
+                  "parameters": []
                 }
               ],
               "actions": [
-                {
-                  "type": {
-                    "value": "FlipX"
-                  },
-                  "parameters": [
-                    "WizardFemale",
-                    "no"
-                  ]
-                },
                 {
                   "type": {
                     "value": "Attack::Attack::SetAttackDirection"
@@ -3215,15 +3252,73 @@
                     "\"Right\"",
                     ""
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
                 {
                   "type": {
-                    "value": "SetObjectVariableAsBoolean"
+                    "value": "TopDownMovementBehavior::TopDownMovementBehavior::IsUsingControl"
                   },
                   "parameters": [
                     "WizardFemale",
-                    "IsFacingLeft",
-                    "False"
+                    "TopDownMovement",
+                    "\"Up\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Attack::Attack::SetAttackDirection"
+                  },
+                  "parameters": [
+                    "WizardFemale",
+                    "Attack",
+                    "\"Up\"",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "TopDownMovementBehavior::TopDownMovementBehavior::IsUsingControl"
+                  },
+                  "parameters": [
+                    "WizardFemale",
+                    "TopDownMovement",
+                    "\"Down\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Attack::Attack::SetAttackDirection"
+                  },
+                  "parameters": [
+                    "WizardFemale",
+                    "Attack",
+                    "\"Down\"",
+                    ""
                   ]
                 }
               ]
@@ -3438,25 +3533,12 @@
                       "conditions": [
                         {
                           "type": {
-                            "value": "ObjectVariableAsBoolean"
+                            "value": "BuiltinCommonInstructions::Once"
                           },
-                          "parameters": [
-                            "KnightFemale",
-                            "IsFacingLeft",
-                            ""
-                          ]
+                          "parameters": []
                         }
                       ],
                       "actions": [
-                        {
-                          "type": {
-                            "value": "FlipX"
-                          },
-                          "parameters": [
-                            "KnightFemale",
-                            "yes"
-                          ]
-                        },
                         {
                           "type": {
                             "value": "Attack::Attack::SetAttackDirection"
@@ -3466,26 +3548,6 @@
                             "Attack",
                             "\"Left\"",
                             ""
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "Attack::SwingingItem::InvertSwing"
-                          },
-                          "parameters": [
-                            "KnightSword",
-                            "SwingingItem",
-                            ""
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "SetObjectVariableAsBoolean"
-                          },
-                          "parameters": [
-                            "KnightFemale",
-                            "IsFacingLeft",
-                            "True"
                           ]
                         }
                       ]
@@ -3525,25 +3587,12 @@
                       "conditions": [
                         {
                           "type": {
-                            "value": "ObjectVariableAsBoolean"
+                            "value": "BuiltinCommonInstructions::Once"
                           },
-                          "parameters": [
-                            "KnightFemale",
-                            "IsFacingLeft",
-                            "True"
-                          ]
+                          "parameters": []
                         }
                       ],
                       "actions": [
-                        {
-                          "type": {
-                            "value": "FlipX"
-                          },
-                          "parameters": [
-                            "KnightFemale",
-                            "no"
-                          ]
-                        },
                         {
                           "type": {
                             "value": "Attack::Attack::SetAttackDirection"
@@ -3553,26 +3602,6 @@
                             "Attack",
                             "\"Right\"",
                             ""
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "Attack::SwingingItem::InvertSwing"
-                          },
-                          "parameters": [
-                            "KnightSword",
-                            "SwingingItem",
-                            ""
-                          ]
-                        },
-                        {
-                          "type": {
-                            "value": "SetObjectVariableAsBoolean"
-                          },
-                          "parameters": [
-                            "KnightFemale",
-                            "IsFacingLeft",
-                            "False"
                           ]
                         }
                       ]
@@ -3920,7 +3949,7 @@
                       },
                       "parameters": [
                         "",
-                        "KnightSword",
+                        "Weapons",
                         "Fighters",
                         ""
                       ]
@@ -3932,7 +3961,7 @@
                         "value": "Flash::Flash::Flash"
                       },
                       "parameters": [
-                        "KnightSword",
+                        "Weapons",
                         "Flash",
                         "2",
                         ""
@@ -3951,7 +3980,7 @@
                         "value": "Cache"
                       },
                       "parameters": [
-                        "KnightSword"
+                        "Weapons"
                       ]
                     }
                   ]
@@ -4086,7 +4115,7 @@
                           },
                           "parameters": [
                             "",
-                            "KnightSword",
+                            "Weapons",
                             "Fighters",
                             ""
                           ]
@@ -4098,7 +4127,7 @@
                             "value": "Montre"
                           },
                           "parameters": [
-                            "KnightSword",
+                            "Weapons",
                             ""
                           ]
                         }
@@ -4214,61 +4243,61 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Attack::Attack::CheckBullet"
+                  },
+                  "parameters": [
+                    "WizardFemale",
+                    "Attack",
+                    "KnightFemale",
+                    "Health",
+                    "FireProjectile",
+                    "FireProjectile"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Attack::Attack::CheckSwing"
+                  },
+                  "parameters": [
+                    "KnightFemale",
+                    "Attack",
+                    "WizardFemale",
+                    "Health",
+                    "KnightSword",
+                    "KnightSword"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "KillCount",
+                    "=",
+                    "ToString(WizardFemale.Attack::KillCount())"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "TextObject::String"
+                  },
+                  "parameters": [
+                    "DeathCount",
+                    "=",
+                    "ToString(WizardFemale.Attack::DeathCount())"
+                  ]
+                }
+              ]
             }
           ],
           "parameters": []
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [
-            {
-              "type": {
-                "value": "Attack::Attack::CheckBullet"
-              },
-              "parameters": [
-                "WizardFemale",
-                "Attack",
-                "KnightFemale",
-                "Health",
-                "FireProjectile",
-                "FireProjectile"
-              ]
-            },
-            {
-              "type": {
-                "value": "Attack::Attack::CheckSwing"
-              },
-              "parameters": [
-                "KnightFemale",
-                "Attack",
-                "WizardFemale",
-                "Health",
-                "KnightSword",
-                "KnightSword"
-              ]
-            },
-            {
-              "type": {
-                "value": "TextObject::String"
-              },
-              "parameters": [
-                "KillCount",
-                "=",
-                "ToString(WizardFemale.Attack::KillCount())"
-              ]
-            },
-            {
-              "type": {
-                "value": "TextObject::String"
-              },
-              "parameters": [
-                "DeathCount",
-                "=",
-                "ToString(WizardFemale.Attack::DeathCount())"
-              ]
-            }
-          ]
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
@@ -5253,192 +5282,369 @@
           ]
         }
       ]
-    },
-    {
-      "associatedLayout": "Demo Dungeon",
-      "lastChangeTimeStamp": 0,
-      "name": "Up and Down",
-      "events": [
-        {
-          "disabled": true,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "TopDownMovementBehavior::TopDownMovementBehavior::IsUsingControl"
-              },
-              "parameters": [
-                "WizardFemale",
-                "TopDownMovement",
-                "\"Up\""
-              ]
-            },
-            {
-              "type": {
-                "value": "ObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingUp",
-                ""
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "Attack::Attack::SetAttackDirection"
-              },
-              "parameters": [
-                "WizardFemale",
-                "Attack",
-                "\"Up\"",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "SetObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingUp",
-                "True"
-              ]
-            }
-          ]
-        },
-        {
-          "disabled": true,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": true,
-                "value": "TopDownMovementBehavior::TopDownMovementBehavior::IsUsingControl"
-              },
-              "parameters": [
-                "WizardFemale",
-                "TopDownMovement",
-                "\"Up\""
-              ]
-            },
-            {
-              "type": {
-                "value": "ObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingUp",
-                "True"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "SetObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingUp",
-                "False"
-              ]
-            }
-          ]
-        },
-        {
-          "disabled": true,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "TopDownMovementBehavior::TopDownMovementBehavior::IsUsingControl"
-              },
-              "parameters": [
-                "WizardFemale",
-                "TopDownMovement",
-                "\"Down\""
-              ]
-            },
-            {
-              "type": {
-                "value": "ObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingDown",
-                "False"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "Attack::Attack::SetAttackDirection"
-              },
-              "parameters": [
-                "WizardFemale",
-                "Attack",
-                "\"Down\"",
-                ""
-              ]
-            },
-            {
-              "type": {
-                "value": "SetObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingDown",
-                "True"
-              ]
-            }
-          ]
-        },
-        {
-          "disabled": true,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": true,
-                "value": "TopDownMovementBehavior::TopDownMovementBehavior::IsUsingControl"
-              },
-              "parameters": [
-                "WizardFemale",
-                "TopDownMovement",
-                "\"Down\""
-              ]
-            },
-            {
-              "type": {
-                "value": "ObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingUp",
-                "True"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "SetObjectVariableAsBoolean"
-              },
-              "parameters": [
-                "WizardFemale",
-                "IsFacingDown",
-                "False"
-              ]
-            }
-          ]
-        }
-      ]
     }
   ],
   "eventsFunctionsExtensions": [
+    {
+      "author": "D8H",
+      "category": "",
+      "description": "This extension can be useful for:\n* Stick an accessory to a moving object,\n* Animate a skeleton.",
+      "extensionNamespace": "",
+      "fullName": "Stick objects to others",
+      "helpPath": "",
+      "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXN0aWNrZXItb3V0bGluZSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGQ9Ik01LjUgMkMzLjYgMiAyIDMuNiAyIDUuNVYxOC41QzIgMjAuNCAzLjYgMjIgNS41IDIySDE2TDIyIDE2VjUuNUMyMiAzLjYgMjAuNCAyIDE4LjUgMkg1LjVNNS44IDRIMTguM0MxOS4zIDQgMjAuMSA0LjggMjAuMSA1LjhWMTVIMTguNkMxNi43IDE1IDE1LjEgMTYuNiAxNS4xIDE4LjVWMjBINS44QzQuOCAyMCA0IDE5LjIgNCAxOC4yVjUuOEM0IDQuOCA0LjggNCA1LjggNCIgLz48L3N2Zz4=",
+      "name": "Sticker",
+      "previewIconUrl": "https://resources.gdevelop-app.com/assets/Icons/sticker-outline.svg",
+      "shortDescription": "Behavior to stick objects to other objects - so that they follow the position and rotation of the object they are stuck to.",
+      "version": "0.3.4",
+      "origin": {
+        "identifier": "Sticker",
+        "name": "gdevelop-extension-store"
+      },
+      "tags": [
+        "sticker",
+        "stick",
+        "follow",
+        "skeleton",
+        "joint"
+      ],
+      "authorIds": [
+        "IWykYNRvhCZBN3vEgKEbBPOR3Oc2"
+      ],
+      "dependencies": [],
+      "eventsFunctions": [
+        {
+          "description": "Check if the object is stuck to another object.",
+          "fullName": "Is stuck to another object",
+          "functionType": "Condition",
+          "group": "",
+          "name": "IsStuck",
+          "private": false,
+          "sentence": "_PARAM1_ is stuck to _PARAM3_",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::JsCode",
+              "inlineCode": "const stickerBehaviorName = eventsFunctionContext.getBehaviorName(\"Behavior\");\n/** @type {Hashtable<gdjs.RuntimeObject[]>} */\nconst stickerObjectsLists = eventsFunctionContext.getObjectsLists(\"Object\");\n/** @type {Hashtable<gdjs.RuntimeObject[]>} */\nconst basisObjectsLists = eventsFunctionContext.getObjectsLists(\"BasisObject\");\n\neventsFunctionContext.returnValue = gdjs.evtTools.object.twoListsTest(\n  (stickerObject, basisObject, stickerBehaviorName) => {\n    const behavior = stickerObject.getBehavior(stickerBehaviorName);\n    return behavior.basisObject === basisObject;\n  },\n  stickerObjectsLists,\n  basisObjectsLists,\n  false,\n  stickerBehaviorName\n);",
+              "parameterObjects": "",
+              "useStrict": true,
+              "eventsSheetExpanded": true
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Sticker",
+              "longDescription": "",
+              "name": "Object",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "objectList"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Sticker behavior",
+              "longDescription": "",
+              "name": "Behavior",
+              "optional": false,
+              "supplementaryInformation": "Sticker::Sticker",
+              "type": "behavior"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Basis",
+              "longDescription": "",
+              "name": "BasisObject",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "eventsBasedBehaviors": [
+        {
+          "description": "Stick the object to another. Use the action to stick the object, or unstick it later.",
+          "fullName": "Sticker",
+          "name": "Sticker",
+          "objectType": "",
+          "eventsFunctions": [
+            {
+              "description": "",
+              "fullName": "",
+              "functionType": "Action",
+              "group": "",
+              "name": "onCreated",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const behaviorName = eventsFunctionContext.getBehaviorName(\"Behavior\");\nconst object = objects[0];\nconst behavior = object.getBehavior(behaviorName);\n\n// Set up the scene sticker objects list - if not done already.\nif (!runtimeScene.__allStickers)\n    runtimeScene.__allStickers = new Set();\n\n// Set up the behavior extra methods - if not done already.\nconst prototype = Object.getPrototypeOf(behavior);\nif (!prototype.updateRelativeCoordinates) {\n    // Unstick from deleted objects.\n    gdjs.registerObjectDeletedFromSceneCallback(function (runtimeScene, deletedObject) {\n        if (!runtimeScene.__allStickers) return;\n\n        for (const sticker of runtimeScene.__allStickers) {\n            if (sticker.basisObject === deletedObject) {\n                sticker.basisObject = null;\n            }\n        }\n    });\n\n    /**\n     * Update the coordinates in the basisObject basis.\n     * \n     * It uses the basisObject coordinates from the previous frame.\n     * This way, the sticker can move relatively to it and still\n     * follow basisObject.\n     * \n     * @param {gdjs.RuntimeObject} basisObject\n     */\n    prototype.updateRelativeCoordinates = function (basisObject) {\n        const object = this.owner;\n\n        // Update relative coordinates\n        this.relativeX = object.getX() - this.basisOldX;\n        this.relativeY = object.getY() - this.basisOldY;\n        if (!this._getOnlyFollowPosition()) {\n            this.relativeAngle = object.getAngle() - this.basisOldAngle;\n            this.relativeWidth = object.getWidth() / this.basisOldWidth;\n            this.relativeHeight = object.getHeight() / this.basisOldHeight;\n            const deltaX = object.getCenterXInScene() - this.basisOldCenterXInScene;\n            const deltaY = object.getCenterYInScene() - this.basisOldCenterYInScene;\n            const angle = this.basisOldAngle * Math.PI / 180;\n            this.relativeRotatedX = (deltaX * Math.cos(angle) + deltaY * Math.sin(angle)) / this.basisOldWidth;\n            this.relativeRotatedY = (-deltaX * Math.sin(angle) + deltaY * Math.cos(angle)) / this.basisOldHeight;\n\n            // Save initial values to avoid calculus and rounding errors\n            this.basisOriginalWidth = basisObject.getWidth();\n            this.basisOriginalHeight = basisObject.getHeight();\n            this.basisOriginalAngle = basisObject.getAngle();\n        }\n    }\n\n    /**\n     * Copy the coordinates to use it the next frame.\n     * @param basisObject {gdjs.RuntimeObject}\n     */\n    prototype.updateOldCoordinates = function (basisObject) {\n        const object = this.owner;\n\n        this.ownerOldX = object.getX();\n        this.ownerOldY = object.getY();\n\n        this.basisOldX = basisObject.getX();\n        this.basisOldY = basisObject.getY();\n\n        if (!this._getOnlyFollowPosition()) {\n            this.ownerOldAngle = object.getAngle();\n            this.ownerOldWidth = object.getWidth();\n            this.ownerOldHeight = object.getHeight();\n\n            this.basisOldAngle = basisObject.getAngle();\n            this.basisOldWidth = basisObject.getWidth();\n            this.basisOldHeight = basisObject.getHeight();\n            this.basisOldCenterXInScene = basisObject.getCenterXInScene();\n            this.basisOldCenterYInScene = basisObject.getCenterYInScene();\n        }\n    }\n    /**\n     * Follow the basisObject (called in doStepPostEvents).\n     * \n     * This method is also called by children to ensure\n     * parents are updated first.\n     */\n    prototype.followBasisObject = function () {\n        if (this.followingDoneThisFrame) {\n            return;\n        }\n        this.followingDoneThisFrame = true;\n        /** @type {gdjs.RuntimeObject} */\n        const basisObject = this.basisObject;\n        if (basisObject) {\n            // If the behavior on the basis object has a different name,\n            // the objects will still follow their basis objects\n            // but frame delays could happen.\n            if (basisObject.hasBehavior(behaviorName)) {\n                const basisBehavior = basisObject.getBehavior(behaviorName);\n                if (basisBehavior.type === this.type) {\n                    // Follow parents 1st to avoid frame delays\n                    basisBehavior.followBasisObject();\n                }\n            }\n\n            const object = this.owner;\n\n            if (this._getOnlyFollowPosition()) {\n                if (object.getX() !== this.ownerOldX\n                    || object.getY() !== this.ownerOldY) {\n                    this.updateRelativeCoordinates(basisObject);\n                }\n\n                if (this.basisOldX !== basisObject.getX() ||\n                    this.basisOldY !== basisObject.getY()) {\n                    object.setPosition(\n                        basisObject.getX() + this.relativeX,\n                        basisObject.getY() + this.relativeY);\n                }\n            } else {\n                if (object.getX() !== this.ownerOldX\n                    || object.getY() !== this.ownerOldY\n                    || object.getAngle() !== this.ownerOldAngle\n                    || object.getWidth() !== this.ownerOldWidth\n                    || object.getHeight() !== this.ownerOldHeight) {\n                    this.updateRelativeCoordinates(basisObject);\n                }\n\n                // Follow basisObject\n                if (basisObject.getAngle() === this.basisOriginalAngle && this.basisOriginalAngle === 0) {\n                    if (basisObject.getWidth() === this.basisOriginalWidth ||\n                        basisObject.getHeight() === this.basisOriginalHeight) {\n                        if (this.basisOldX !== basisObject.getX() ||\n                            this.basisOldY !== basisObject.getY()) {\n                            object.setPosition(\n                                basisObject.getX() + this.relativeX,\n                                basisObject.getY() + this.relativeY);\n                        }\n                    } else {\n                        object.setPosition(\n                            basisObject.getX() + this.relativeRotatedX * basisObject.getWidth(),\n                            basisObject.getY() + this.relativeRotatedY * basisObject.getHeight());\n                    }\n                } else {\n                    object.setAngle(basisObject.getAngle() + this.relativeAngle);\n\n                    const deltaX = this.relativeRotatedX * basisObject.getWidth();\n                    const deltaY = this.relativeRotatedY * basisObject.getHeight();\n                    const angle = -basisObject.getAngle() * Math.PI / 180;\n                    object.setX(basisObject.getCenterXInScene() + object.getX() - object.getCenterXInScene() + deltaX * Math.cos(angle) + deltaY * Math.sin(angle));\n                    object.setY(basisObject.getCenterYInScene() + object.getY() - object.getCenterYInScene() - deltaX * Math.sin(angle) + deltaY * Math.cos(angle));\n                }\n                // Unproportional dimensions changes won't work as expected\n                // if the object angle is not null but nothing more can be done\n                // because there is no full affine transformation on objects.\n                if (basisObject.getWidth() !== this.basisOriginalWidth) {\n                    object.setWidth(this.relativeWidth * basisObject.getWidth());\n                }\n                if (basisObject.getHeight() !== this.basisOriginalHeight) {\n                    object.setHeight(this.relativeHeight * basisObject.getHeight());\n                }\n            }\n\n            this.updateOldCoordinates(basisObject);\n        }\n    }\n}\n\n// Register this object as a sticker.\nruntimeScene.__allStickers.add(behavior);\n",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": true
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Sticker::Sticker",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "",
+              "fullName": "",
+              "functionType": "Action",
+              "group": "",
+              "name": "doStepPreEvents",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const behaviorName = eventsFunctionContext.getBehaviorName(\"Behavior\");\nconst object = objects[0];\nconst behavior = object.getBehavior(behaviorName);\n\nbehavior.followingDoneThisFrame = false;",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": false
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Sticker::Sticker",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "",
+              "fullName": "",
+              "functionType": "Action",
+              "group": "",
+              "name": "doStepPostEvents",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const behaviorName = eventsFunctionContext.getBehaviorName(\"Behavior\");\nconst object = objects[0];\nconst behavior = object.getBehavior(behaviorName);\n\nbehavior.followBasisObject();",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": true
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Sticker::Sticker",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Stick on another object.",
+              "fullName": "Stick",
+              "functionType": "Action",
+              "group": "",
+              "name": "Stick",
+              "private": false,
+              "sentence": "Stick _PARAM0_ to _PARAM2_",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const object = objects[0];\nconst behaviorName = eventsFunctionContext.getBehaviorName(\"Behavior\");\nconst basisObjects = eventsFunctionContext.getObjects(\"BasisObject\");\n\nif (basisObjects.length === 0) return;\nconst basisObject = basisObjects[0];\n\nconst behavior = object.getBehavior(behaviorName);\n\nbehavior.basisObject = basisObject;\nbehavior.updateOldCoordinates(basisObject);\nbehavior.updateRelativeCoordinates(basisObject);\n",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": true
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Sticker::Sticker",
+                  "type": "behavior"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object to stick to",
+                  "longDescription": "",
+                  "name": "BasisObject",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "objectList"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "Unstick from the object it was stuck to.",
+              "fullName": "Unstick",
+              "functionType": "Action",
+              "group": "",
+              "name": "Unstick",
+              "private": false,
+              "sentence": "Unstick _PARAM0_",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const object = objects[0];\nconst behaviorName = eventsFunctionContext.getBehaviorName(\"Behavior\");\nconst behavior = object.getBehavior(behaviorName);\n\nbehavior.basisObject = null;",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": true
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Sticker::Sticker",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "",
+              "fullName": "",
+              "functionType": "Action",
+              "group": "",
+              "name": "onDestroy",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const behaviorName = eventsFunctionContext.getBehaviorName(\"Behavior\");\nconst object = objects[0];\nconst behavior = object.getBehavior(behaviorName);\n\nif (runtimeScene.__allStickers)\n    runtimeScene.__allStickers.delete(behavior);\n",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": true
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Sticker::Sticker",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            }
+          ],
+          "propertyDescriptors": [
+            {
+              "value": "",
+              "type": "Boolean",
+              "label": "Only follow the position",
+              "description": "",
+              "group": "",
+              "extraInformation": [],
+              "hidden": false,
+              "name": "OnlyFollowPosition"
+            }
+          ]
+        }
+      ],
+      "eventsBasedObjects": []
+    },
     {
       "author": "",
       "category": "",
@@ -8246,7 +8452,8 @@
             }
           ]
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     },
     {
       "author": "",
@@ -11502,7 +11709,8 @@
             }
           ]
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     },
     {
       "author": "Bouh",
@@ -12281,7 +12489,8 @@
           "objectGroups": []
         }
       ],
-      "eventsBasedBehaviors": []
+      "eventsBasedBehaviors": [],
+      "eventsBasedObjects": []
     },
     {
       "author": "",
@@ -17980,7 +18189,8 @@
             }
           ]
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     },
     {
       "author": "Tristan Rhodes (https://victrisgames.itch.io/)",
@@ -22595,7 +22805,8 @@
           ],
           "propertyDescriptors": []
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     },
     {
       "author": "@4ian",
@@ -23163,12 +23374,13 @@
             }
           ]
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     },
     {
       "author": "",
       "category": "General",
-      "description": "# Attack System\n\nThis includes several behaviors which work with the the FireBullet and Health extensions to create a complete attack system. The behaviors are Attack, HandheldItem, SwingItem, and HealthBar.\n\n## Attack Extension Setup\nThere will typically be between two and four objects: the Attacker, the Target, the Weapon, and the Bullet. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingingItem behavior to the Weapon (if there is one).\n4. Use the appropriate \"Check X damage\" action for the type of attack on each frame.\n5. Use the \"Attack by...\" actions to attack, either by swinging or by firing (or both, or neither).\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.\n\n## Swinging Behaviors\n\nThis also includes behaviors which allow an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n1. HandheldItem: An object with this behavior can be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item being held, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem: An object in this behavior can be swung like a sword.\n    - You can configure the starting angle, swing speed and swing arc length.\n    - The swing can also be inverted to go in the opposite direction.\n\n# Health Bar\n\nAs a bonus, this extension includes a behavior for a health bar which can hover above a character and change in response to the character's health.\n\nThis works with the \"Health\" extension to display health information in a health bar which can also hover over the character. \n\nTo use it:\n1. Add the HealthBar behavior to the object.\n2. Attach the health bar to the object using the \"Attach health bar\" action.\n3. Update the health bar every frame using the \"Update health bar\" action.",
+      "description": "# Attack System\n\nThis extension includes several behaviors which work with the the FireBullet and Health extensions to create a complete attack system. The behaviors are Attack, HandheldItem, SwingItem, and HealthBar.\n\n## Attack Behavior Setup\nThere will typically be between two and four objects: the Attacker, the Target, the Weapon, and the Bullet. To set them up:\n1. Add the Health behavior to both the Attacker and the Target.\n2. Add the Attack behavior to the Attacker.\n3. Add either the FireBullet or SwingingItem behavior to the Weapon (if there is one).\n4. On each frame, use the appropriate \"Check X damage\" action for the type of attack.\n5. Use the \"Attack by...\" actions to attack, either by swinging or by firing (or both, or neither).\n    - The action can be invoked in response to an event, like a key press, or it can be run on every frame to auto-attack.\n\nThe attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.\n\n## Swinging Behaviors\n\nThis also includes behaviors which allow an object to be held and swung like a sword. There are two behaviors which tend to go together, although they could be used separately (e.g. a non-swinging item, like a key).\n\n1. HandheldItem: An object with this behavior can be held by another object at a named point.\n    - For the object holding the item, create a custom point or move the \"Center\" or \"Origin\" points to wherever the object should be held (the \"hand\"). \n    - For the item being held, move the \"Center\" point to wherever the object should be held (like the hilt of a sword).\n2. SwingingItem: An object in this behavior can be swung like a sword.\n    - You can configure the starting angle, swing speed and swing arc length.\n    - The swing can follow the rotation of the object holding the item.\n\n# Health Bar\n\nAs a bonus, this extension includes a behavior for a health bar which can hover above a character and change in response to the character's health.\n\nThis works with the \"Health\" extension to display health information in a health bar which can also hover over the character. \n\nTo use it:\n1. Add the HealthBar behavior to the object.\n2. Attach the health bar to the object using the \"Attach health bar\" action.\n3. Update the health bar every frame using the \"Update health bar\" action.",
       "extensionNamespace": "",
       "fullName": "Attack a target",
       "helpPath": "https://github.com/praeus/attack/blob/main/README.md",
@@ -23176,7 +23388,7 @@
       "name": "Attack",
       "previewIconUrl": "https://resources.gdevelop-app.com/assets/Icons/sword-cross.svg",
       "shortDescription": "Have an object attack and do damage to another object using an optional melee or a ranged weapon.",
-      "version": "0.0.1",
+      "version": "0.0.2",
       "tags": [
         "attack",
         "damage",
@@ -23263,7 +23475,7 @@
           "description": "An object which can attack a target with a ranged or melee weapon.",
           "fullName": "Attack a target",
           "name": "Attack",
-          "objectType": "",
+          "objectType": "Sprite",
           "eventsFunctions": [
             {
               "description": "Attack a target and deal damage if they are in range.",
@@ -23424,7 +23636,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -23669,7 +23881,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -23908,7 +24120,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -24070,7 +24282,7 @@
                           },
                           "parameters": [
                             "Weapon",
-                            "SwingBehavior",
+                            "SwingingBehavior",
                             ""
                           ]
                         },
@@ -24143,7 +24355,7 @@
                           },
                           "parameters": [
                             "Weapon",
-                            "SwingBehavior",
+                            "SwingingBehavior",
                             ""
                           ]
                         },
@@ -24204,7 +24416,7 @@
                           },
                           "parameters": [
                             "Weapon",
-                            "SwingBehavior",
+                            "SwingingBehavior",
                             ""
                           ]
                         },
@@ -24247,7 +24459,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -24499,7 +24711,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -24663,7 +24875,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -24846,7 +25058,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -24917,7 +25129,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -24975,7 +25187,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25026,7 +25238,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25084,7 +25296,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25135,7 +25347,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25193,7 +25405,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25234,6 +25446,235 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::PropertyRotateDirection"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
+                      ]
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "Attack::Attack::PropertyAttackDirection"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "=",
+                            "\"Up\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "BuiltinCommonInstructions::Once"
+                          },
+                          "parameters": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "SetAngle"
+                          },
+                          "parameters": [
+                            "Object",
+                            "=",
+                            "-90"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "FlipX"
+                          },
+                          "parameters": [
+                            "Object",
+                            "no"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "Attack::Attack::PropertyAttackDirection"
+                          },
+                          "parameters": [
+                            "Object",
+                            "Behavior",
+                            "=",
+                            "\"Down\""
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "BuiltinCommonInstructions::Once"
+                          },
+                          "parameters": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "SetAngle"
+                          },
+                          "parameters": [
+                            "Object",
+                            "=",
+                            "90"
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "FlipX"
+                          },
+                          "parameters": [
+                            "Object",
+                            "no"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "value": "BuiltinCommonInstructions::Or"
+                          },
+                          "parameters": [],
+                          "subInstructions": [
+                            {
+                              "type": {
+                                "value": "Attack::Attack::PropertyAttackDirection"
+                              },
+                              "parameters": [
+                                "Object",
+                                "Behavior",
+                                "=",
+                                "\"Left\""
+                              ]
+                            },
+                            {
+                              "type": {
+                                "value": "Attack::Attack::PropertyAttackDirection"
+                              },
+                              "parameters": [
+                                "Object",
+                                "Behavior",
+                                "=",
+                                "\"Right\""
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": {
+                            "value": "BuiltinCommonInstructions::Once"
+                          },
+                          "parameters": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "value": "SetAngle"
+                          },
+                          "parameters": [
+                            "Object",
+                            "=",
+                            "0"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::PropertyAttackDirection"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "\"Left\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "FlipX"
+                      },
+                      "parameters": [
+                        "Object",
+                        "yes"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::PropertyAttackDirection"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "=",
+                        "\"Right\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "FlipX"
+                      },
+                      "parameters": [
+                        "Object",
+                        "no"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const object = objects[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\nobject.__isFlipped = behavior._getAttackDirection() === \"Left\";",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": false
                 }
               ],
               "parameters": [
@@ -25244,7 +25685,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25302,7 +25743,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25353,7 +25794,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25411,7 +25852,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25459,7 +25900,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25507,7 +25948,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25569,7 +26010,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25627,7 +26068,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25685,7 +26126,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25743,7 +26184,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25803,7 +26244,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25861,7 +26302,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -25920,7 +26361,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -26285,7 +26726,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -26412,7 +26853,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -26531,7 +26972,58 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
+                  "type": "object"
+                },
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Behavior",
+                  "longDescription": "",
+                  "name": "Behavior",
+                  "optional": false,
+                  "supplementaryInformation": "Attack::Attack",
+                  "type": "behavior"
+                }
+              ],
+              "objectGroups": []
+            },
+            {
+              "description": "",
+              "fullName": "",
+              "functionType": "Action",
+              "group": "",
+              "name": "onCreated",
+              "private": false,
+              "sentence": "",
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "Attack::Attack::SetAttackDirection"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior",
+                        "Object.Behavior::PropertyAttackDirection()",
+                        ""
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "parameters": [
+                {
+                  "codeOnly": false,
+                  "defaultValue": "",
+                  "description": "Object",
+                  "longDescription": "",
+                  "name": "Object",
+                  "optional": false,
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -26740,7 +27232,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -26896,7 +27388,7 @@
                   "longDescription": "",
                   "name": "Object",
                   "optional": false,
-                  "supplementaryInformation": "",
+                  "supplementaryInformation": "Sprite",
                   "type": "object"
                 },
                 {
@@ -27030,6 +27522,16 @@
               "name": "AttackSpeed"
             },
             {
+              "value": "true",
+              "type": "Boolean",
+              "label": "Rotate object to face in the attack direction ",
+              "description": "",
+              "group": "",
+              "extraInformation": [],
+              "hidden": false,
+              "name": "RotateDirection"
+            },
+            {
               "value": "",
               "type": "Behavior",
               "label": "Health behavior",
@@ -27145,7 +27647,7 @@
                 },
                 {
                   "type": "BuiltinCommonInstructions::JsCode",
-                  "inlineCode": "const object = objects[0];\nconst character = eventsFunctionContext.getObjects(\"Character\")[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\nconst point = eventsFunctionContext.getArgument(\"Point\");\n\nif (character !== undefined) {\n    behavior.heldBy = character;\n    behavior.point = point;\n    object.setCenterPositionInScene(character.getPointX(point), character.getPointY(point));\n}",
+                  "inlineCode": "const object = objects[0];\nconst character = eventsFunctionContext.getObjects(\"Character\")[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\nconst point = eventsFunctionContext.getArgument(\"Point\");\n\nif (character !== undefined) {\n    behavior.heldBy = character;\n    behavior.point = point;\n    behavior.heldByAngle = character.getAngle();\n    behavior.objectAngle = object.getAngle();\n    behavior.isRotationEnabled = behavior._getFollowRotation();\n    object.setCenterPositionInScene(character.getPointX(point), character.getPointY(point));\n}",
                   "parameterObjects": "Object",
                   "useStrict": true,
                   "eventsSheetExpanded": false
@@ -27252,15 +27754,10 @@
               "events": [
                 {
                   "type": "BuiltinCommonInstructions::JsCode",
-                  "inlineCode": "const object = objects[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\n    \nif ((behavior.heldBy !== undefined) && (behavior.heldBy !== null) && \n    (behavior.point !== undefined) && (behavior.point !== null)) {\n    object.setCenterPositionInScene(\n        behavior.heldBy.getPointX(behavior.point), \n        behavior.heldBy.getPointY(behavior.point));\n}",
+                  "inlineCode": "const object = objects[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\n    \nif ((behavior.heldBy !== undefined) && (behavior.heldBy !== null) && \n    (behavior.point !== undefined) && (behavior.point !== null)) {\n    object.setCenterPositionInScene(\n        behavior.heldBy.getPointX(behavior.point), \n        behavior.heldBy.getPointY(behavior.point));\n\n    if (behavior.isRotationEnabled) {\n        const rotationDifference = behavior.heldBy.getAngle() - behavior.heldByAngle;\n        const newAngle = behavior.objectAngle + rotationDifference;\n        if (behavior.heldBy.__isFlipped) {\n            object.setAngle(-newAngle);\n        }\n        else {\n            object.setAngle(newAngle);\n        }\n    }\n}",
                   "parameterObjects": "Object",
                   "useStrict": true,
                   "eventsSheetExpanded": false
-                },
-                {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": []
                 }
               ],
               "parameters": [
@@ -27288,7 +27785,18 @@
               "objectGroups": []
             }
           ],
-          "propertyDescriptors": []
+          "propertyDescriptors": [
+            {
+              "value": "true",
+              "type": "Boolean",
+              "label": "Follow the rotation of the holding object",
+              "description": "",
+              "group": "",
+              "extraInformation": [],
+              "hidden": false,
+              "name": "FollowRotation"
+            }
+          ]
         },
         {
           "description": "An item that can swing in an arc from a starting angle, like a sword.",
@@ -27674,78 +28182,6 @@
               "objectGroups": []
             },
             {
-              "description": "Invert swing direction by negating the starting angle and swing speed.",
-              "fullName": "Invert swing",
-              "functionType": "Action",
-              "group": "",
-              "name": "InvertSwing",
-              "private": false,
-              "sentence": "Have _PARAM0_ swing in the opposite direction",
-              "events": [
-                {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [],
-                  "actions": [
-                    {
-                      "type": {
-                        "value": "Attack::SwingingItem::SetPropertySwingSpeed"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Behavior",
-                        "=",
-                        "-Object.Behavior::PropertySwingSpeed()"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "Attack::SwingingItem::SetPropertyStartingAngle"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Behavior",
-                        "=",
-                        "-Object.Behavior::PropertyStartingAngle()"
-                      ]
-                    },
-                    {
-                      "type": {
-                        "value": "SetAngle"
-                      },
-                      "parameters": [
-                        "Object",
-                        "=",
-                        "Object.Behavior::PropertyStartingAngle()"
-                      ]
-                    }
-                  ]
-                }
-              ],
-              "parameters": [
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Object",
-                  "longDescription": "",
-                  "name": "Object",
-                  "optional": false,
-                  "supplementaryInformation": "",
-                  "type": "object"
-                },
-                {
-                  "codeOnly": false,
-                  "defaultValue": "",
-                  "description": "Behavior",
-                  "longDescription": "",
-                  "name": "Behavior",
-                  "optional": false,
-                  "supplementaryInformation": "Attack::SwingingItem",
-                  "type": "behavior"
-                }
-              ],
-              "objectGroups": []
-            },
-            {
               "description": "",
               "fullName": "",
               "functionType": "Action",
@@ -27805,28 +28241,11 @@
               "sentence": "",
               "events": [
                 {
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "value": "Attack::SwingingItem::PropertyIsSwinging"
-                      },
-                      "parameters": [
-                        "Object",
-                        "Behavior"
-                      ]
-                    }
-                  ],
-                  "actions": [],
-                  "events": [
-                    {
-                      "type": "BuiltinCommonInstructions::JsCode",
-                      "inlineCode": "const object = objects[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\n\nif (!behavior.isSwingStarted) {\n    behavior.isSwingStarted = true;\n    behavior.isSwingFinished = false;\n    object.setAngle(behavior._getStartingAngle());\n    behavior.swingArc = 0;\n}\nelse if (behavior.swingArc < behavior._getSwingArc() && !behavior.isSwingFinished) {\n    object.setAngle(object.getAngle() + behavior._getSwingSpeed());\n    behavior.swingArc += Math.abs(behavior._getSwingSpeed());\n}\nelse if (behavior.swingArc >= behavior._getSwingArc() && !behavior.isSwingFinished) {\n    behavior.isSwingFinished = true;\n} \nelse if (behavior.isSwingFinished && behavior.swingArc > 0) {\n    object.setAngle(object.getAngle() - behavior._getSwingSpeed());\n    behavior.swingArc -= Math.abs(behavior._getSwingSpeed);\n}\nelse {\n    object.setAngle(behavior._getStartingAngle());\n    behavior.isSwingStarted = false;\n    behavior.isSwingFinished = false;\n    behavior._setIsSwinging(false);\n}",
-                      "parameterObjects": "Object",
-                      "useStrict": true,
-                      "eventsSheetExpanded": false
-                    }
-                  ]
+                  "type": "BuiltinCommonInstructions::JsCode",
+                  "inlineCode": "const object = objects[0];\nconst behavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"Behavior\"));\nconst handheldBehavior = object.getBehavior(eventsFunctionContext.getBehaviorName(\"HandheldBehavior\"));\nconst swingArc = behavior._getSwingArc();\nlet startingAngle = behavior._getStartingAngle();\nlet swingSpeed = behavior._getSwingSpeed();\n\nif (handheldBehavior.isRotationEnabled) {\n    handheldBehavior.isRotationEnabled = false;\n    behavior.isRotationEnabled = true;\n    object.setAngle(startingAngle);\n}\n\nif (behavior.isRotationEnabled) {\n    startingAngle += (handheldBehavior.heldBy.getAngle() - handheldBehavior.heldByAngle);\n    if (handheldBehavior.heldBy.__isFlipped) {\n        startingAngle = -startingAngle;\n        swingSpeed = -swingSpeed;\n    }\n    if ((startingAngle != object.getAngle()) && !behavior._getIsSwinging()) {\n        object.setAngle(startingAngle);\n    }\n}\n\nif (behavior._getIsSwinging()) {\n    if (!behavior.isSwingStarted) {\n        behavior.isSwingStarted = true;\n        behavior.isSwingFinished = false;\n        object.setAngle(startingAngle);\n        behavior.swingArc = 0;\n    }\n    else if (behavior.swingArc < swingArc && !behavior.isSwingFinished) {\n        object.setAngle(object.getAngle() + swingSpeed);\n        behavior.swingArc += Math.abs(swingSpeed);\n    }\n    else if (behavior.swingArc >= swingArc && !behavior.isSwingFinished) {\n        behavior.isSwingFinished = true;\n    } \n    else if (behavior.isSwingFinished && behavior.swingArc > 0) {\n        object.setAngle(object.getAngle() - swingSpeed);\n        behavior.swingArc -= Math.abs(swingSpeed);\n    }\n    else {\n        object.setAngle(startingAngle);\n        behavior.isSwingStarted = false;\n        behavior.isSwingFinished = false;\n        behavior._setIsSwinging(false);\n    }\n}",
+                  "parameterObjects": "Object",
+                  "useStrict": true,
+                  "eventsSheetExpanded": false
                 }
               ],
               "parameters": [
@@ -27884,6 +28303,18 @@
               "extraInformation": [],
               "hidden": false,
               "name": "SwingSpeed"
+            },
+            {
+              "value": "",
+              "type": "Behavior",
+              "label": "Handheld item behavior",
+              "description": "",
+              "group": "",
+              "extraInformation": [
+                "Attack::HandheldItem"
+              ],
+              "hidden": false,
+              "name": "HandheldBehavior"
             },
             {
               "value": "",
@@ -28212,7 +28643,8 @@
             }
           ]
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     },
     {
       "author": "@4ian",
@@ -29681,7 +30113,8 @@
             }
           ]
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     },
     {
       "author": "@4ian",
@@ -30425,7 +30858,8 @@
             }
           ]
         }
-      ]
+      ],
+      "eventsBasedObjects": []
     }
   ],
   "externalLayouts": [],
