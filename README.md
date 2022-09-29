@@ -5,17 +5,21 @@ This is a demonstration of the GDevelop Attack extension, which works together w
 
 # Attack System
 
-This includes several behaviors which work with the the FireBullet and Health extensions to create a complete attack system. The behaviors are Attack, HandheldItem, SwingItem, and HealthBar.
+This extension includes several behaviors which work together create a complete attack system. The behaviors are Attack, HandheldItem, SwingingItem, FiringItem, Target, and HealthBar.
 
 ## Attack Extension Setup
-There will typically be between two and four objects: the Attacker, the Target, the Weapon, and the Bullet. To set them up:
-1. Add the Health behavior to both the Attacker and the Target.
-2. Add the Attack behavior to the Attacker.
-3. Add either the FireBullet or SwingingItem behavior to the Weapon (if there is one).
-4. Use the appropriate "Check X damage" action for the type of attack on each frame.
-5. Use the "Attack by..." actions to attack, either by swinging or by firing (or both, or neither).
 
-The attack damage, interval, range, direction, and speed can be configured in the Attack behavior properties. The Attack behavior also maintains a death count and a kill count for the attacker.
+There will typically be between two and four objects: the Attacker, the Target, the Weapon, and the Bullet. To set them up:
+1. Add the Target behavior to the Target.
+2. Add the Attack behavior to the Attacker.
+3. Add either the FiringItem or SwingingItem behavior to the Weapon (if there is one).
+    - Add the HandheldItem behavior to hold the Weapon in the attacker's "hand" (i.e. a named point on the attacker sprite).
+    - Set the center point of the Weapon to the point where the weapon should be held (e.g. the hilt or grip).
+4. On each frame, use the appropriate "Check X damage" action for the type of attack.
+5. Use the "Attack by..." actions to attack, either by swinging or by firing (or both, or neither).
+    - The action can be invoked in response to an event, like a key press, or it can be run on every frame to auto-attack.
+
+The attack damage, interval, range, and direction can be configured in the Attack behavior properties. The Attack behavior also maintains a kill count for the attacker. The Target behavior keeps track of damage done and the death count for the target.
 
 ## Swinging Behaviors
 
